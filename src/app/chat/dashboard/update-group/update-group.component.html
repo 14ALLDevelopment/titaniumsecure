@@ -1,0 +1,148 @@
+<div class="chat-popup-bg">
+    <div class="chat-popup new-chat">
+        <div class="close-icon pointer" (click)="goBack()"><i class="fas fa-times"></i></div>
+        <h2>Update Group</h2>
+        <ng-scrollbar>
+            <div class="profile-chat-list-wrapper" *ngIf="!userAddShow">
+                <div class="profile-chat-list">
+
+                    <div class="alphabetic-chat-list">
+                        <div class="chat-list">
+                            <div class="pointer" [ngClass]="{'selected' : showProfile }" (click)="toggleProfileView()">
+                                <h3>Profile</h3>
+                                <i class="far fa-id-card"></i>
+                            </div>
+                            <div *ngIf="showProfile" class="group-profile-block">
+                                <!-- <div class="group-img"><i class="fas fa-camera"></i></div> -->
+                                <div class="group-img">
+                                    <input class="pointer" #Image type="file" (change)="handleFileInput($event)" />
+                                    <img class="group-pic-img" [src]="groupImage ? groupImage : (dialog.photo ? dialog.photo : '/assets/images/group_icon.png')"
+                                        onerror="this.src='/assets/images/group_icon.png';">
+                                    <span *ngIf="!groupImage && uploading" class="loader-profile"><img src="/assets/images/loader2.gif" /></span>
+                                </div>
+                                <div class="group-des">
+                                    <form [formGroup]="groupNameForm">
+                                        <input type="text" formControlName="groupName">
+                                    </form>
+                                    <!-- <h3>{{dialog.name}}</h3> -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="alphabetic-chat-list">
+                        <div class="chat-list">
+                            <div class="pointer" [ngClass]="{'selected' : showMessageSettings }"
+                                (click)="toggleMessageSettingView()">
+                                <h3>Message Settings</h3>
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <div *ngIf="showMessageSettings" class="message-setting">
+                                <form [formGroup]="ephemeralSettingForm">
+                                    <div class="ephemeral-block">
+                                        <h4>Ephemeral Message Duration</h4>
+                                        <div class="ephemeral-field">
+                                            <div class="label-group">
+                                                <input type="checkbox" formControlName="defaultTime"> <label>Default 120
+                                                    Seconds</label>
+                                            </div>
+                                            <div class="label-group">
+                                                <input type="input" formControlName="customTime" placeholder="Seconds"
+                                                pattern="\d*" maxlength="4" numbersOnly>
+                                                <label>Custom</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <form [formGroup]="fileSharingForm">
+                                    <div class="file-sharing-control">
+                                        <h4>File Sharing Control</h4>
+                                        <div class="label-group">
+                                            <input type="checkbox" formControlName="all">
+                                            <label>Allow users to share and download files</label>
+                                        </div>
+                                        <div class="label-group">
+                                            <input type="checkbox" formControlName="view">
+                                            <label>User can only view file in Titanium app</label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="alphabetic-chat-list">
+                        <div class="chat-list">
+                            <div class="pointer" [ngClass]="{'selected' : showMembers }">
+                                <h3 (click)="toggleMembersView()">Group Member</h3>
+                                <i class="fas fa-user-plus" (click)="toggleAddShowUserList()"></i>
+                            </div>
+                            <div *ngIf="showMembers" class="group-member-list">
+                                <ul *ngIf="selectedUsers.length > 0">
+                                    <li *ngFor="let user of selectedUsers">
+                                        <img [src]="_usersCache[user].custom_data ? (_usersCache[user].custom_data.ProfilePublicUrl ? _usersCache[user].custom_data.ProfilePublicUrl : '/assets/images/user-icon-img.jpg') : '/assets/images/user-icon-img.jpg'"
+                                            onerror="this.src='/assets/images/user-icon-img.jpg';">
+                                        <h3 [ngStyle]="{'font-weight': user == dialog.user_id ? 'bold' : ''}">{{ user !=
+                                            dialog.user_id ? _usersCache[user].name : _usersCache[user].name + '
+                                            (Admin)' }}</h3>
+                                        <a *ngIf="(currentUser.id == dialog.user_id  &&  currentUser.id != user) || dialog.occupants_ids.indexOf(user) < 0"
+                                            class="pointer" (click)="toggleSelectItem(user)">Remove</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-side-bar " *ngIf="userAddShow">
+                <div class="profile-search">
+                    <input type="text" [(ngModel)]="searchText" placeholder="Search people & bots" />
+                </div>
+
+                <div class="profile-chat-list-wrapper">
+                    <div class="profile-chat-list">
+                        <div class="alphabetic-chat-list pointer">
+                            <div class="chat-list">
+                                <div class="group-member-list">
+                                    <ul *ngIf="users.length > 0">
+                                        <ng-container *ngFor="let user of users | filter:searchText">
+                                            <li *ngIf="selectedUsers.indexOf(user.id) < 0"
+                                                (click)="toggleSelectItem(user.id)">
+                                                <img [src]="_usersCache[user.id].custom_data ? (_usersCache[user.id].custom_data.ProfilePublicUrl ? _usersCache[user.id].custom_data.ProfilePublicUrl : '/assets/images/user-icon-img.jpg') : '/assets/images/user-icon-img.jpg'"
+                                                    onerror="this.src='/assets/images/user-icon-img.jpg';">
+                                                <h3>{{ _usersCache[user.id].name }}</h3>
+                                                <a>{{ selectedUsers.indexOf(user.id) >= 0 ? 'Remove': 'Add' }}</a>
+                                                <!-- <span *ngIf="selectedUsers.indexOf(user.id) >= 0" class="checkbox-custom"><i class="far fa-check-square" aria-hidden="true"></i></span>
+                                                    <span *ngIf="selectedUsers.indexOf(user.id) < 0" class="checkbox-custom"><i class="far fa-square" aria-hidden="true"></i></span> -->
+                                            </li>
+                                        </ng-container>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="users.length == 0  && !isfetched" style="display: flex; justify-content: center;padding: 30px;">
+                            <div class="fa-2x">
+                                <i class="fas fa-circle-notch fa-spin"></i>
+                            </div>
+                        </div>
+
+                        <div *ngIf="users.length == 0 && isfetched" style="display: flex; justify-content: center;height: 40vh;align-items: center;">
+                            <p>No User Found</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-scrollbar>
+
+        <div class="button-group">
+            <button type="button" *ngIf="!userAddShow" class="btn red" (click)="goBack()">Close</button>
+            <button type="button" *ngIf="!userAddShow" class="btn red" (click)="onSubmit();">Update</button>
+            <div class="center-button-wrapper" *ngIf="userAddShow">
+                <button type="button" (click)="toggleAddShowUserList()" [disabled]="selectedUsers.length < 2"
+                    class="btn red">back</button>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="chat-popup-bg">
+    <div class="chat-popup new-group-chat">
+        <div class="close-icon pointer" (click)="close()"><i class="fas fa-times"></i></div>
+        <h2>Video</h2>
+        <video *ngIf="videoAttachment.type == 'video'"  autoplay playsinline class="message_attachment" width="100%" height="100%" controls="controls" controlsList="nodownload" preload="metadata" alt="attachment">
+            <source src="{{videoAttachment.uid ? videoAttachment.src : videoAttachment.data ? videoAttachment.src : videoAttachment.url }}" type="video/mp4">
+        </video>
+    </div>
+</div>

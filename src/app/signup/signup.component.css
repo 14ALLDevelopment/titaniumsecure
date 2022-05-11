@@ -1,0 +1,8 @@
+.try-text{color: #e62210;}
+ngx-otp-input {display: flex;justify-content: center;}
+.resend-otp-text {margin: 10px 0;display: flex;justify-content: center;font-weight: 600;}
+.form-group li.terms-checkbox{flex-direction: inherit; font-size: 14px; align-items: center;}
+.form-group li.terms-checkbox input {margin-right: 15px; width: 18px; height: 18px;}
+.terms-checkbox a{color: #041146; text-decoration: underline;}
+
+.login-form .form-group input, .login-form .form-group textarea{line-height: normal;}

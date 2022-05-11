@@ -1,0 +1,75 @@
+<section class="map-form-section">
+    <div class="map-form">
+        <h3 data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">Learn More</h3>
+        <p data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">Book a free call with us to learn more about Titanium.</p>
+        <div class="form-group">
+            <!-- <form id="contact-form">
+                <ul>
+                    <li>
+                        <label>Your Name </label>
+                        <input type="text" name="name" class="name" />
+                    </li>
+                    <li>
+                        <label>Your e-mail </label>
+                        <input type="email" name="email_id" />
+                    </li>
+                    <li>
+                        <label>Phone Number </label>
+                        <input type="text" name="phone_number" />
+                    </li>
+                    <li>
+                        <label>Message </label>
+                        <textarea name="message" rows="5"></textarea>
+                    </li>
+                    <li class="show__alert__message" style="display: none;">
+                        <div class="alert alert-success">
+                            Message sent successfully.
+                        </div>
+                    </li>
+                    <li>
+                        <input type="button" class="btn btn-orange submitBtn" name="submit" value="Submit" />
+                    </li>
+                </ul>
+            </form> -->
+            <form [formGroup]="contactForm" id="contact-form">
+                <ul>
+                    <li>
+                        <label>Your Name </label>
+                        <input [ngClass]="( signSubmit && f['name']?.errors?.required ? 'form-error' : '')"
+                        type="text" formControlName="name" name="name" placeholder="Name" />
+                        
+                    </li>
+                    <li>
+                        <label>Your e-mail </label>
+                        <input [ngClass]="( signSubmit && f['email_id']?.errors?.required || signSubmit && f['email_id']?.errors?.email ? 'form-error' : '')"
+                         type="email" formControlName="email_id" name="email_id" placeholder="Email Address" email />
+                    </li>
+                    <li>
+                        <label>Phone Number </label>
+                        <input [ngClass]="( signSubmit && f['phone_number']?.errors?.required ? 'form-error' : '')"
+                         type="number" maxlength="15" formControlName="phone_number" name="phone_number" placeholder="Phone Number" />
+                    </li>
+                    <li>
+                        <label>Message </label>
+                        <textarea [ngClass]="( signSubmit && f['message']?.errors?.required ? 'form-error' : '')"
+                         name="message" rows="5" formControlName="message" name="message" placeholder="Message"></textarea>
+                    </li>
+
+                    <li *ngIf="error" class="show__alert__message">
+                        <div class="alert alert-danger">
+                            {{error}}
+                        </div>
+                    </li> 
+                    <li *ngIf="success" class="show__alert__message">
+                        <div class="alert alert-success">
+                            {{success}}
+                        </div>
+                    </li>      
+                    <li>
+                        <input type="button" class="btn btn-orange submitBtn" (click)="onSubmit()" name="submit" value="Get Started" />
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</section>

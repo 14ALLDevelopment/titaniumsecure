@@ -1,0 +1,22 @@
+.privacy-policy-bg{background: none; }
+.privacy-policy-box{margin: 0 auto 40px;}
+.thankyou-bg .logo img {max-width: 76px;padding: 0;}
+.privacy-policy-box h3 {font-size: 24px;line-height: 36px; padding: 10px 0; margin: 0; font-weight: bold;}
+.privacy-policy-box h4 {
+	padding: 20px 0;
+	margin: 0;
+	font-size: 20px;
+	font-weight: bold;
+	color: #000;
+}
+.privacy-policy-box p strong{width: 100%; display: flex;}
+.privacy-policy-box {max-width: 1140px;text-align: left;}
+.privacy-policy-box p {padding: 0px 0 20px;line-height: 1.8; margin: 0;}
+.privacy-policy-box li {font-size: 18px;margin: 0 0 20px 20px;list-style: disc;padding: 0 0 0 10px;}
+
+@media screen and (max-width:767px){
+.thankyou-bg .logo {padding: 20px 0;}
+.privacy-policy-box { padding: 20px;}
+.privacy-policy-box h3 {font-size: 18px;line-height: 28px;}
+
+}

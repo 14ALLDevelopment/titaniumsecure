@@ -1,0 +1,30 @@
+<div class="row" *ngIf="videoService?.showCalling">
+    <div class="col-md-6 incoming-profile-img">
+        <div class="profile-img"><img src="assets/images/user-icon-img.jpg"></div>
+        <div class="profile-des">
+            <h3>{{_userCache[videoService.currentSession?.initiatorID] ? _userCache[videoService.currentSession?.initiatorID].name  : "Unknown "}}</h3>
+            <!-- <h3>Matt Thompson</h3> -->
+            <span>Incoming Call...</span>
+        </div>
+    </div>
+    <div class="col-md-6 incoming-calls-icon">
+        <span class="call-pick pointer" *ngIf="videoService.currentSession?.callType == 1" (click)="acceptCall()"><i class="fas fa-video"></i></span>
+        <span class="call-pick pointer" *ngIf="videoService.currentSession?.callType == 2" (click)="acceptCall()"><i class="fas fa-phone"></i></span>
+        <span class="call-deny pointer" (click)="rejectCall()"><i class="fas fa-phone-slash"></i></span>
+    </div>
+</div>
+
+<div class="row" *ngIf="videoConferenceService?.showCalling">
+    <div class="col-md-6 incoming-profile-img">
+        <div class="profile-img"><img src="assets/images/group_icon.png"></div>
+        <div class="profile-des">
+            <h3>{{videoConferenceService?.currentdailog ? videoConferenceService?.currentdailog.name : 'Group' }}</h3>
+            <span>Incoming conference call...</span>
+        </div>
+    </div>
+    <div class="col-md-6 incoming-calls-icon">
+        <!-- <span class="call-pick" *ngIf="videoService.currentSession?.callType == 1" (click)="acceptCall()"><i class="fas fa-video"></i></span> -->
+        <span class="call-pick pointer" (click)="videoConferenceService?.acceptIncomingConferenceCall();"><i class="fas fa-video"></i></span>
+        <span class="call-deny pointer" (click)="videoConferenceService?.rejectIncomingConferenceCall();" ><i class="fas fa-phone-slash"></i></span>
+    </div>
+</div>

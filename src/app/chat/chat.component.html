@@ -1,0 +1,268 @@
+<div class="payment-header">
+    <div class="payment-logo"><img src="assets/images/logo.png">
+        <h3>Subscription</h3>
+    </div>
+    <div class="user-block">
+        <div class="dropdown">
+            <button class="buser-icon dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                <img src="assets/images/user-icon-img.jpg">
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="user-name">
+                    <h3>James Britt</h3>
+                    <span><a href="#">change</a></span>
+                </div>
+                <ul>
+                    <li class="subscription-menu"><a href="#"><em></em>Subscription</a></li>
+                    <li class="account-setting-menu"><a href="#"><em></em>Account Settings</a></li>
+                    <li class="logout-menu"><a href="#"><em></em>Log Out</a></li>
+                </ul>
+
+            </div>
+            <span class="user-name-text">David Rose <i class="fas fa-chevron-down"></i></span>
+        </div>
+    </div>
+
+</div>
+
+<div class="chat-bg">
+    <!---Chat-->
+
+    <!----------Incoming Calls Component--------->
+    <div class="incoming-call">
+        <!-- <app-chat-incoming-call></app-chat-incoming-call> -->
+        <app-incoming-video-call></app-incoming-video-call>
+    </div>
+    <!----------Incoming Calls Component END--------->
+
+    <div class="chat">
+
+        <!--Chat Side Bar-->
+        <div class="chat-side-bar ">
+
+            <!-- <app-tabs></app-tabs> -->
+            <!-- <app-new-group-chat></app-new-group-chat> -->
+            <!-- <app-new-chat></app-new-chat> -->
+            <!-- <app-my-profile></app-my-profile> -->
+            <!-- <app-new-group-chat-list></app-new-group-chat-list> -->
+            <!-- <app-block-contact></app-block-contact> -->
+            <!-- <app-chat-setting></app-chat-setting> -->
+            <!-- <app-security-password></app-security-password> -->
+            <!-- <app-sound-notification></app-sound-notification> -->
+            <!-- <app-media1></app-media1> -->
+            <!-- <app-media2></app-media2> -->
+            <!-- <app-update-group></app-update-group> -->
+            <!-- <app-audio-call></app-audio-call> -->
+            <!-- <app-audio-group-call></app-audio-group-call> -->
+            <app-video-call></app-video-call>
+            <!-- <app-video-group-call></app-video-group-call> -->
+
+            <div class="profile-image-block">
+                <span class="profile-image"><img src="/assets/images/chat-profile-icon.jpg" /></span>
+                <div class="profile-name">Mace West</div>
+            </div>
+            <div class="profile-search">
+                <input type="text" placeholder="Contacts & Groups" />
+                <input type="submit" />
+            </div>
+            <div class="profile-side-tab">
+                <ul>
+                    <li><i class="fas fa-comment-alt"></i> Chats</li>
+                    <li><i class="fas fa-user-friends"></i> Groups</li>
+                    <li><i class="fas fa-address-book"></i> Contact</li>
+                </ul>
+                <div class="chat-buttons">
+                    <button type="button"><i class="fas fa-plus"></i>New Chat</button>
+                    <button type="button"><i class="fas fa-plus"></i>New Group Chat</button>
+                </div>
+                <div class="group-buttons" style="display: none;">
+                    <button type="button"><i class="fas fa-plus"></i>New Group Chat</button>
+                </div>
+                <div class="contact-buttons" style="display: none;">
+                    <button type="button"><i class="fas fa-plus"></i>Add Contact</button>
+                    <div class="other-contact">
+                        <i class="fas fa-envelope"></i>
+                        <i class="fas fa-exchange-alt"></i>
+                        <i class="fas fa-project-diagram"></i>
+                        <i class="fas fa-user-lock"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-chat-list-wrapper">
+                <ng-scrollbar>
+                    <div class="profile-chat-list">
+
+                        <div class="alphabetic-chat-list">
+                            <span class="alphabetic">C</span>
+                            <div class="chat-list">
+                                <img src="/assets/images/chat-list1-img.jpg" />
+                                <div class="">
+                                    <h3>Claire Sharwood</h3>
+                                    <p>Thanks again you have been...</p>
+                                </div>
+                                <div class="ellipse-counter"><i class="fas fa-ellipsis-h"></i><span
+                                        class="counter-digit">2</span></div>
+                                <app-chat-action-dropdown></app-chat-action-dropdown>
+                            </div>
+                        </div>
+                        <div class="alphabetic-chat-list">
+                            <span class="alphabetic">K</span>
+                            <div class="chat-list">
+                                <img src="/assets/images/chat-list2-img.jpg" />
+                                <div class="">
+                                    <h3>Kirsten Mckellar</h3>
+                                    <p>My selfie game is lacking can...</p>
+                                </div>
+                                <div class="ellipse-counter"><i class="fas fa-ellipsis-h"></i><span
+                                        class="counter-digit">2</span></div>
+                            </div>
+                        </div>
+                        <div class="alphabetic-chat-list">
+                            <span class="alphabetic">M</span>
+                            <div class="chat-list">
+                                <img src="/assets/images/chat-list3-img.jpg" />
+                                <div class="">
+                                    <h3>Matt Thompson</h3>
+                                    <p>Where is the nearest place to...</p>
+                                </div>
+                                <div class="ellipse-counter"><i class="fas fa-ellipsis-h"></i></div>
+                            </div>
+                            <div class="chat-list">
+                                <img src="/assets/images/chat-list4-img.jpg" />
+                                <div class="">
+                                    <h3>Mace Windu</h3>
+                                    <p>Ok that sounds perfect</p>
+                                </div>
+                                <div class="ellipse-counter"><i class="fas fa-ellipsis-h"></i></div>
+                            </div>
+                            <div class="chat-list">
+                                <img src="/assets/images/chat-list5-img.jpg" />
+                                <div class="">
+                                    <h3>Claire Sharwood</h3>
+                                    <p>Thanks again you have been...</p>
+                                </div>
+                                <div class="ellipse-counter"><i class="fas fa-ellipsis-h"></i><span
+                                        class="counter-digit">2</span></div>
+                            </div>
+                        </div>
+                        <div class="alphabetic-chat-list">
+                            <span class="alphabetic">S</span>
+                            <div class="chat-list">
+                                <img src="/assets/images/chat-profile-icon.jpg" />
+                                <div class="">
+                                    <h3>Shaun Gardner</h3>
+                                    <p>So tell the voice inside your...</p>
+                                </div>
+                                <div class="ellipse-counter"><i class="fas fa-ellipsis-h"></i><span
+                                        class="counter-digit">2</span></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </ng-scrollbar>
+            </div>
+        </div>
+        <!--End Chat Side Bar-->
+
+        <!--Chat area-->
+        <div class="chat-area">
+            <div class="chat-area-header">
+                <div class="chat-header-left">
+                    <img src="/assets/images/chat-profile-icon.jpg" />
+                    <h3>Kirsten Mckellar</h3>
+                </div>
+                <div class="chat-header-right">
+                    <span><i class="fas fa-phone"></i></span>
+                    <span><i class="fas fa-video"></i></span>
+                </div>
+            </div>
+            <div class="chat-body">
+                <ng-scrollbar>
+                    <div class="chat-message-row">
+                        <div class="chat-image">
+                            <img src="/assets/images/chat-list2-img.jpg" />
+                            <span class="chat-time">12:47</span>
+                        </div>
+                        <div class="chat-text">It goes a little something like this.</div>
+                    </div>
+                    <div class="chat-message-row">
+                        <div class="chat-image">
+                            <img src="/assets/images/chat-list2-img.jpg" />
+                            <span class="chat-time">12:47</span>
+                        </div>
+                        <div class="chat-text">It was all a dream, I used to read Word Up magazine Salt'n'Pepa and Heavy
+                            D
+                            up in the limousine.</div>
+                    </div>
+                    <div class="chat-message-row right">
+                        <div class="chat-image">
+                            <img src="/assets/images/chat-profile-icon.jpg" />
+                            <span class="chat-time">12:47</span>
+                        </div>
+                        <div class="chat-text">Did you ever Hang' pictures on your wall?</div>
+                    </div>
+                    <div class="chat-message-row">
+                        <div class="chat-image">
+                            <img src="/assets/images/chat-list2-img.jpg" />
+                            <span class="chat-time">12:47</span>
+                        </div>
+                        <div class="chat-text">Yes I did! Every Saturday! Rap Attack, Mr. Magic, Marley Marl. I even let
+                            my
+                            tape rock 'til my tape popped. Smokin' weed
+                            and bamboo, sippin' on private stock. But this was way back, when I had the red and black
+                            lumberjack with the hat to
+                            match.</div>
+                    </div>
+                    <div class="chat-message-row right">
+                        <div class="chat-image">
+                            <img src="/assets/images/chat-profile-icon.jpg" />
+                            <span class="chat-time">12:47</span>
+                        </div>
+                        <div class="chat-text">Haha awesome, I think I know the album your looking. for.
+                        </div>
+                    </div>
+
+                    <div class="chat-message-row">
+                        <div class="chat-image">
+                            <img src="/assets/images/chat-list2-img.jpg" />
+                            <span class="chat-time">12:47</span>
+                        </div>
+                        <div class="chat-text">It goes a little something like this.</div>
+                    </div>
+                    <div class="chat-message-row">
+                        <div class="chat-image">
+                            <img src="/assets/images/chat-list2-img.jpg" />
+                            <span class="chat-time">12:47</span>
+                        </div>
+                        <div class="chat-text">Yes I did! Every Saturday! Rap Attack, Mr. Magic, Marley Marl. I even let
+                            my tape rock 'til my tape popped. Smokin' weed
+                            and bamboo, sippin' on private stock. But this was way back, when I had the red and black
+                            lumberjack with the hat to
+                            match.</div>
+                    </div>
+                    <div class="chat-message-row">
+                        <div class="chat-image">
+                            <img src="/assets/images/chat-list2-img.jpg" />
+                            <span class="chat-time">12:47</span>
+                        </div>
+                        <div class="chat-text">It goes a little something like this.</div>
+                    </div>
+
+
+                </ng-scrollbar>
+            </div>
+            <div class="chat-message-footer">
+                <div class="chat-input-area">
+                    <div></div>
+                    <i class="fas fa-smile-beam"></i> <input type="text" placeholder="Type a message here" />
+                </div>
+                <div class="chat-action-block">
+                    <i class="fas fa-paperclip"></i>
+                    <i class="fas fa-paper-plane"></i>
+                </div>
+            </div>
+        </div>
+        <!--End Chat area-->
+    </div>
+    <!---Chat end-->
+</div>

@@ -1,0 +1,36 @@
+<div class="wrapper">
+    <app-header [headerTitle]="'Subscription'"></app-header>
+    <div class="payment-history-page">
+        <div class="map-form">
+            <div class="login-form-group">
+                <h3>Subscription cancellation</h3>
+                <p>Sorry to see you go, please let us know why</p>
+                <div class="form-group">
+                    <form [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
+                        <ul>
+                            <li *ngFor="let reason of reasons; let i=index">
+                                <label>
+                                <input #checkboxes type="checkbox" [value]="reason.value" (change)="onCheckboxChange($event)" />
+                                {{reason.name}}
+                                </label>   
+                            </li>
+    
+                            <li *ngIf="showTextarea">
+                                <textarea formControlName ="textarea" placeholder="Please specify your reason."></textarea>
+                            </li>
+                            
+                            <li *ngIf="error" class="show__alert__message">
+                                <div class="alert alert-danger">
+                                    {{error}}
+                                </div>
+                            </li>
+                            <li>
+                                <button class="btn btn-blue" type="submit">Unsubscribe</button>
+                            </li>                            
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,465 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css");
+body{margin: 0; padding: 0;   line-height: 1.2; font-style: 16px;  font-family: 'Poppins', sans-serif; font-weight: 400; color: #333;}
+body, html, .wrapper{height: 100%;}
+.wrapper{width: 100%; margin:0 auto; padding: 0; }
+ul{margin: 0; padding: 0; list-style: none;}
+img{max-width: 100%; border:0; outline: 0; }
+input, button, textarea{outline: 0;}
+h1, h2, h3, h4, h5, h6{font-weight: 600; color: #333333; margin: 0; padding: 0 0 20px; line-height: 1.2;}
+p{color: #687086; padding: 0 0 20px; margin: 0; line-height: 1.6; font-style: 16px;}
+a{border:0; outline: 0;}
+section{position: relative; display: block; padding: 60px 0; z-index: 2;}
+.container{ margin:0 auto; position: relative; z-index: 2 }
+.container-large{max-width: 1600px; margin:0 auto;}
+header{padding: 30px 0;}
+.reg-font-size{font-style: 16px; }
+.md-font-size{font-style: 22px; line-height: 32px;}
+
+/*User Dropdwon*/
+.user-block .dropdown-menu {right: 0;top: 60px;border-radius: 10px;}
+.user-block .dropdown.open .dropdown-menu {display: block;width: 250px;box-shadow: rgba(255,255,255,0.1) 20px 10px 25px;padding: 20px;}
+.user-block {position: fixed;right: 30px;top: 30px;}
+.user-block button {border: 0;padding: 0;background: none;}
+.user-block img {width: 48px;height: 48px;border-radius: 100%;border: #fff solid 2px;}
+.user-block .dropdown-toggle::after{content: none;}
+.user-name {display: flex;justify-content: space-between;padding: 0 0 10px;}
+.user-name h3 {font-size: 18px;padding: 0;}
+.user-name span a {color: #e62210;text-decoration: none;font-size: 12px;text-transform: capitalize;font-weight: 400;}
+.user-block ul {padding: 20px 0 0;border-top: #e3e3e3 solid 1px;}
+.user-block ul li {padding: 10px 0;color: #000;}
+.user-block ul li a {color: #000;text-decoration: none;display: flex;align-items: flex-start;}
+.user-block ul li em{	width: 18px;height: 20px;margin: 2px 10px 0 0;}
+.subscription-menu em {background: url(./assets/images/user-drop-down-icons.png) no-repeat 0 0;}
+.account-setting-menu em {background: url(./assets/images/user-drop-down-icons.png) no-repeat 0 -20px;}
+.logout-menu em {background: url(./assets/images/user-drop-down-icons.png) no-repeat 0 -40px;}
+.user-block ul li.logout-menu {border-top: #e3e3e3 solid 1px;margin: 18px 0 0;padding: 20px 0 0;display: block;}
+
+/*btn css*/
+.btn {border-radius: 5px;font-size: 16px;line-height: 18px;padding: 15px 31px 15px;border: 0;text-align: center; color:white !important}
+.btn-orange, .btn-orange:hover, .btn-orange:active{background: #e62210 !important; color: #fff;}
+.btn-blue, .btn-blue:hover, .btn-blue:active{background: #041146 !important; color: #fff;}
+.form-group label.error {color: red;font-size: 12px;padding: 5px 0;}
+.banner-btn {position: relative;margin: 20px 0;}
+.banner-btn::after {background: rgba(230,34,16,0.5);content: "";width: 100%;padding: 8px 23px 8px;border-radius: 5px;position: absolute;bottom: -6px;left: 0;}
+.btn-border{border: #fff solid 1px; }
+
+/*default css end*/
+.box-shadow{box-shadow: 16px 29px 63px #ccc; border-radius: 10px;}
+
+
+/*Banner css*/
+.social-icons {position: fixed;top: 50%;right: 30px;margin: -60px 0 0 0;}
+.social-icons a {color: #fff;padding: 10px 5px;display: block;}
+header{padding: 30px 0; text-align: center; width: 100%;}
+.logo {text-align: center;padding: 30px 0;}
+.video-banner{width: 100%; height: 100vh; position: fixed; left: 0; top: 0; object-fit: cover;}
+.video-wrapper{height: 100vh;}
+.show-video-bg .video-wrapper::before {content: "";background: rgba(0,14,72,0.76);transition: all ease-in 0.5s;position: fixed;
+left: 0;top: 0;width: 100%;height: 100%;z-index: 1;}
+.banner{text-align: center; }
+.banner h1 {font-size: 46px;color: #fff;font-weight: 700;padding: 30px 0; text-transform: uppercase;}
+.banner p{font-size: 22px; color: #fff;}
+.banner-img{padding: 60px 0;}
+.banner-des {font-size: 16px;line-height: 30px; padding: 0 0 60px; color: #fff; /*text-align: center;*/}
+.banner-des p {font-size: 16px;}
+.banner-des ul {list-style: disc;padding: 0 0 20px 15px;display: flex;font-size: 16px;flex-direction: column;align-items: center;}
+
+.trial-getstarted-section {background: #010049;padding: 40px;max-width: 1200px;border-bottom: #de0510 solid 8px;border-radius: 5px;
+	position: relative;overflow: hidden;}
+.trial-getstarted-section::before, .trial-getstarted-section::after {content: "";background: #0b0a50;width: 256px;height: 256px;
+position: absolute;left: -136px;top: -70px;border-radius: 100%;z-index: 0;}
+.trial-getstarted-section::after {right: -128px;left: auto;bottom: -60px;top: auto;}
+.trial-getstarted-section > div {display: flex;align-items: center;justify-content: space-between;position: relative;z-index: 2;
+	 max-width: 900px;	margin: 0 auto;}
+.trial-getstarted-section h3 {font-size: 48px;color: #fff;text-align: left;font-weight: 400;line-height: 1.4;}
+.trial-getstarted-section h3 span {color: #de0510;font-size: 48px;font-weight: 700;}
+
+.row.even, .row.odd {align-items: center;padding: 60px 0;}
+.row.even > div:last-child{order: 2}
+.even h3, .odd h3 {font-size: 36px;font-weight: 600;color: #fff;}
+.even p, .odd p {font-size: 18px;font-weight: 400;color: #fff;}
+.use-it-now .container {display: flex;align-items: center;justify-content: space-between;}
+.use-it-now {background: url(./assets/images/use-it-now-bg.png) no-repeat center center;background-size: cover;
+	padding: 7% 0;color: #fff; z-index: 1;}
+.use-it-now h3{padding: 0; color: #fff; font-size: 56px;}
+.use-it-now .btn {color: #fff;margin: 0 12px;padding: 15px 20px;}
+.use-it-now .btn i{padding: 0 10px 0 0;}
+.map-form-section{background: #fff url(./assets/images/ma-bg.png) no-repeat center center; padding: 80px 0; background-size: cover; text-align: center;}
+
+.form-group {display: block;max-width: 600px;margin: 0 auto;box-shadow: 16px 29px 63px #ccc;border-radius: 5px;padding: 30px;background: #fff;}
+.form-group li {display: flex;flex-direction: column;text-align: left;padding: 0 0 20px; position: relative;}
+.form-group label {font-size: 16px;padding: 0 0 15px;}
+.form-group input, .form-group textarea {background: #f8f9fc;border: 0;padding: 15px 25px;resize: none;}
+.form-group input[type="submit"]{background: #e62210;}
+.form-group li:last-child {align-items: flex-end; padding: 0;}
+
+.top-btns {position: absolute;right: 30px;z-index: 99;top: 30px;}
+.top-btns.dashboard-btn {
+	top: 4px;
+}
+.dashboard-btn .banner-btn {
+	margin: 0 50px 0 0;
+}
+.top-btns .sign-in-btn-text {color: #fff;text-decoration: none;padding: 0 20px 0 0;font-size: 16px; cursor: pointer;}
+.top-btns a.btn {font-size: 16px;background: #fff !important;color: #333 !important;}
+.top-btns .banner-btn::after { background: rgba(255,255,2555,0.5);}
+.alert-danger, .alert-success {
+    color: #842029;
+    background: transparent !important;
+    padding: 0 !important;
+	border: 0 !important;
+}
+.alert-success {
+    color: #0f5132;
+    background: transparent !important;
+}
+li.otp-referal-field input:last-child {
+    margin: 0;
+}
+li.otp-referal-field {
+    display: flex;
+    flex-direction: row;
+}
+li.otp-referal-field input {
+    width: 50%;
+    margin: 0 20px 0 0;
+    display: flex;
+}
+
+/*footer*/
+footer {background: #fff;position: relative;z-index: 2;padding: 60px 0;text-align: center;}
+footer > div{	max-width: 725px; font-size: 18px; color: #666; line-height: 30px; letter-spacing: 0.3;	margin: 0 auto;}
+.footer-des {padding: 25px 0 15px;}
+.footer-des a{color: #666; cursor: pointer; text-decoration: none;}
+
+/*login page*/
+.login-form {padding: 0;display: flex;justify-content: space-between;max-width: 100%;height: 100%; background: #fff;}
+.login-form a{color: #041146; text-decoration: none;}
+.login-form .form-group input, .login-form .form-group textarea {background: #e7eaf3; border-radius: 3px; }
+
+.login-bg {flex: 0 0 26%;display: flex;align-items: flex-start;justify-content: center;padding: 45px 0;background: url(./assets/images/login-bg.jpg) no-repeat 0 0;
+background-size: cover;position: fixed;left: 0px;top: 0;width: 26%;height: 100%; border-left: #e62210 solid 10px;}
+.login-form .map-form {flex: 0 0 74%; margin: 0 0 0 26%; }
+.login-bg img{max-width: 76px;}
+.login-form-group {max-width: 730px;margin: 45px auto 0;text-align: left;padding: 0px 100px 20px 30px;}
+.login-form-group ol, .login-form-group ul {
+    padding-left: 0;
+}
+.login-form .social-icons a {color: #000;}
+.login-form .btn {width: 100%;height: 50px;font-size: 18px;}
+.show-password {position: absolute;right: 10px;top: 58px;font-size: 14px;cursor: pointer;font-weight: 500;display: flex;align-items: center;}
+.show-password .fa-eye-slash {display: none;}
+.hide-password .fa-eye-slash {display: block;}
+.hide-password .fa-eye {display: none;}
+.show-password i {padding-right: 5px;}
+.form-group li.checkbox-block {display: flex;justify-content: space-between;flex-direction: row;}
+.checkbox-block > div {display: flex;align-items: center;}
+.checkbox-block input[type="checkbox"] {width: 20px;height: 20px;border: #ddd solid 1px;margin-right: 15px;}
+.form-group li.checkbox-block label {padding: 0;}
+.dont-account-link a{color: #041146; text-decoration: underline;}
+
+/*Subscription Screen1*/
+.get-otp-btn {position: absolute;right: 5px;top: 5px;background: #041146;height: 40px;border: 0;color: #fff;padding: 5px 20px;font-size: 14px;border-radius: 5px;}
+.bottom-slide-icons {display: flex;margin-left: auto;justify-content: flex-end;padding: 30px;}
+.bottom-slide-icons div {width: 62px;height: 8px;background: #c1c3ca;border-radius: 10px;margin: 5px; cursor: pointer;}
+.bottom-slide-icons div.active{background: #041146;}
+
+/*Subscription Screen2*/
+.subcription-amount {background: #000e48;color: #fff;padding:0 20px;border-radius: 20px;display: flex;width: 100%;font-size: 16px;line-height: 30px;align-items: center;margin: 0 0 30px;}
+.subcription-amount .amount {width: 32%;}
+.subcription-amount {color: #fff;font-size: 16px;line-height: 30px;}
+.subcription-amount .amount span {font-size: 32px;}
+.subcription-amount .amount strong {font-size: 54px;font-weight: 400;}
+.subscription-des {width: 68%;border-left: #333e6d dashed 1px;padding: 30px 0 30px 30px;position: relative;}
+.subcription-amount .amount span.amount-label {font-size: 16px;padding: 0 0 0 25px;}
+.subscription-des::before, .subscription-des::after {content: "";width: 22px;height: 22px;border-radius: 10px;background: #fff;position: absolute;left: -11px;top: -10px;}
+.subscription-des::after{top: auto; bottom: -11px;}
+.fab.fa-cc-visa {position: absolute;right: 12px;top: 12px;font-size: 32px;color: #000;}
+.form-group li.card-details {display: flex;flex-direction: row;align-items: center;}
+.form-group li.card-details {display: flex;flex-direction: row;align-items: center;}
+.card-details select {background: #e7eaf3;border: 0;height: 55px;margin: 0 30px 0 0;width: 25%;padding: 15px 25px;border-radius: 5px;}
+.form-group li.card-details input {width: 25%;border-radius: 5px;}
+.fas.fa-info-circle {margin: 0 0 0 30px;font-size: 24px;color: #000;}
+
+/*Thank you Page*/
+.thankyou-bg {background: url(./assets/images/thankyou-bg.jpg) no-repeat 0 0;background-size: cover;height: 100%;width: 100%;min-height: 100vh;}
+.thankyou-bg .logo {padding: 45px 0;flex: 1;justify-content: center;display: flex;}
+.thankyou-bg .logo img{max-width: 76px; padding: 45px 0;}
+.thankyou-bg {font-size: 24px;color: #000;}
+.thankyou-box {background: #fff;max-width: 1000px;margin: 0 auto;padding: 40px;text-align: center;position: relative;}
+.thankyou-box p {padding: 30px 10px;color: #000;font-size: 18px;}
+.download-btn-group {bottom: -24px;position: absolute;left: 0;right: 0;}
+.download-btn-group .btn {margin: 0 10px;font-size: 18px;padding: 18px 30px 18px;}
+.download-btn-group .btn i {padding: 0 8px 0 0;}
+
+/*Payment History Pages*/
+.payment-header {display: flex;position: fixed; z-index: 99; top: 0; width: 100%;padding: 15px 20px;border-bottom: #e4eeee solid 1px;justify-content: space-between; background: #fff;}
+.payment-logo {display: flex;align-items: center;}
+.payment-logo img {max-width: 47px;}
+.payment-logo h3 {padding: 0 0 0 30px;font-size: 22px;}
+.payment-header .user-block {position: static;}
+.payment-header .user-block button {border: 0;padding: 0;background: none;position: absolute;width: 190px;right: 0;top: 5px;}
+.payment-header .user-block img {width: 39px;height: 39px;border-radius: 100%;border: #282828 solid 2px;display: flex;}
+.payment-header .user-name-text {position: absolute;right: 0;top: 15px;width: 130px;display: flex;justify-content: space-between;align-items: center;z-index: -1;}
+.payment-history-page {background: #f8f9f9;padding: 45px 0;height: 100%;}
+ 
+.subscription-amount-block{background: url(./assets//images/payment-history-img.png) no-repeat center center;}
+.payment-history {max-width: 780px;margin: 80px auto;display: flex;overflow: hidden;}
+.subscription-amount-block {background:#fff url(./assets/images/payment-history-img.png) no-repeat center right;display: flex;flex-basis: 60%;padding: 30px 30px 10px;color: #000;}
+.view-payment-history-text {margin-left: auto;background: #d5dcef;height: 170px;text-align: center;padding: 25px 30px;flex-basis: 40%;}
+.view-payment-history-text p{color: #000;}
+.subscription-amount-block .amount p{font-size: 16px; color: #000; padding: 0 0 5px;}
+.subscription-amount-block .amount span {font-size: 32px;}
+.subscription-amount-block .amount strong {font-size: 56px;}
+.subscription-amount-block .amount span.amount-label  {font-size: 16px;padding: 0 0 0 30px;}
+.view-payment-history-text a{color: #000e48; font-size: 16px;}
+.no-subscription {justify-content: center;display: flex;flex: 1;padding: 30px 0 0;}
+
+.payment-table-block{max-width: 1100px;}
+.payment-table {
+	max-width: 1100px;
+	padding: 45px 20px;
+	width: 100%;
+}
+.payment-table table{width: 100%;}
+.payment-table tr {
+	box-shadow: 0px 2px 26px 3px #e8e8e8;
+	margin: 20px 0;
+	display: flex;
+	padding: 20px 30px;
+	border-radius: 5px;
+}
+.payment-table th, .payment-table td {
+	width: 15%;
+}
+.payment-table th.des-td, .payment-table td.des-td{width: 30%;}
+.payment-table tr.table-head-lable {background: none;box-shadow: none;margin: 0;padding-bottom: 0;padding-top: 0;}
+.payment-table tr.table-head-lable th{color: #8d8e8e; font-size: 18px; font-weight: 400; }
+.payment-table th.payment-amount-td, .payment-table td.payment-amount-td{width: 15%;}
+.payment-table th.payment-method-td, .payment-table td.payment-method-td{width: 25%;}
+.toolbar {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px 0 0;
+	border-top: #ccc solid 1px;
+	margin: 40px 0 20px;
+	align-items: center;
+	font-size: 16px;
+	color: #000;
+}
+.toolbar-dropdown {
+	display: flex;
+	align-items: center;
+}
+.toolbar-dropdown span {
+	padding: 0 20px 0 0;
+}
+
+.toolbar-dropdown select {
+    background: #fff;
+    border: 0;
+    height: 55px;
+    margin: 0 20px 0 0;
+    width: 100px;
+    box-shadow: 0px 2px 26px 3px #e8e8e8;
+    padding: 15px 25px;
+    border-radius: 5px;
+}
+
+.validate-msg p {
+	color : red;
+	margin-bottom : 0px;
+	padding: 0px;
+}
+
+.form-error {
+    border: #ff0000 solid 1px !important;
+    border-radius: 3px;
+	outline: 2px solid #ff0000;/* for checkbox */
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.iti__country-list li, .form-group li.country-dropdown li {
+    padding: 5px 10px !important;
+    outline: none;
+    display: block !important;
+    flex-direction: row !important;
+}
+.iti{width: 100%;}
+.iti.separate-dial-code.iti--allow-dropdown.iti-sdc-2[_ngcontent-era-c57] input[_ngcontent-era-c57], 
+.iti.separate-dial-code.iti--allow-dropdown.iti-sdc-3[_ngcontent-era-c57] input[_ngcontent-era-c57], 
+.iti.separate-dial-code.iti--allow-dropdown.iti-sdc-4[_ngcontent-era-c57] input[_ngcontent-era-c57], 
+.iti.separate-dial-code  input {
+	width: 100% !important;
+}
+
+/*Incoming Call*/
+.incoming-call {max-width: 1065px;margin: 0 auto;background: #fff;margin: 20px auto -40px;border-radius: 5px;height: 72px;width: 100%;padding: 10px;}
+.incoming-profile-img {display: flex;align-items: center;}
+.incoming-profile-img  .profile-img {margin-right: 15px;}
+.incoming-profile-img img {max-width: 40px;border-radius: 100%;}
+.profile-des h3 {margin: 0;padding: 0;font-size: 16px;font-weight: 400;}
+.profile-des span {font-size: 12px;color: #b0b0b0;font-weight: 300;}
+.incoming-calls-icon {display: flex;align-items: center;justify-content: flex-end;}
+.incoming-calls-icon span {background: #e72311;width: 40px;height: 40px;display: flex;align-items: center;justify-content: center;
+border-radius: 100%;margin-left: 10px;color: #ffff;}
+.incoming-calls-icon span.call-pick {background: #4caf50;}
+
+.login-form-group .form-group ngx-otp-input input {
+    padding: 0;
+}
+.backarrow {
+    padding: 0 0 15px;
+    color: #041146;
+}
+.backarrow i {
+    font-size: 14px;
+    padding: 0 5px 0 0;
+}
+
+
+/*Responsive css*/
+@media screen and (max-width: 768px) {
+  [data-aos] {
+    pointer-events: auto !important;
+  }
+
+  html:not(.no-js) [data-aos^=fade][data-aos^=fade] {
+    opacity: 1 !important;
+  }
+
+  html:not(.no-js) [data-aos=fade-up], html:not(.no-js) [data-aos=fade-right], html:not(.no-js) [data-aos=fade-left],
+  html:not(.no-js) [data-aos=fade-up] {
+    transform: none !important;
+  }
+}
+@media screen and (max-width: 1023px){
+	/*trial-getstarted-section*/
+	.trial-getstarted-section h3, .trial-getstarted-section h3 span {font-size: 32px;}
+	/*trial-getstarted-section end*/
+	.use-it-now .btn {color: #fff;margin: 0 7px;padding: 10px 8px;font-size: 14px;}
+	.use-it-now h3{font-size: 36px; text-align: center;}
+
+	/*Thank you page*/
+	.thankyou-box{margin: 0 20px 30px;}
+
+	/*payment history page*/
+	.payment-history {max-width: calc(100% - 40px);}
+	.payment-table tr.table-head-lable th {font-size: 16px;}
+	.payment-table tr {padding: 20px 20px;font-size: 14px;}
+
+	/*Signup*/
+	.login-form .map-form {
+		 
+		/* max-height: calc(100vh - 255px); */
+		overflow-y: auto;
+	}
+}
+
+@media screen and (max-width: 767px){
+	.banner p {font-size: 16px;color: #fff;}
+	.banner h1 {font-size: 24px;padding: 30px 0;line-height: 36px;}
+		/*trial-getstarted-section*/
+		.trial-getstarted-section > div{flex-direction: column;}
+		.trial-getstarted-section h3, .trial-getstarted-section h3 span{font-size: 28px;}
+		.trial-getstarted-section{padding: 15px;}
+	
+		/*trial-getstarted-section end*/
+	.use-it-now .container {flex-wrap: wrap;}
+	.use-it-now .btn {margin: 20px 0px 0;padding: 10px 8px;font-size: 14px;width: 100%;}
+	footer{padding: 0 15px 30px; font-size: 14px;}
+
+	/*Login Page*/
+	.login-form{flex-wrap: wrap;}
+	.login-form-group {padding: 0px; margin: 10px auto 0; }
+	.login-bg, .map-form, .login-form .map-form {flex: 0 0 100%; position: static; height: auto; margin: 0; padding: 20px;}
+	.login-bg{height: 40px;}
+	.form-group input, .form-group textarea{width: 100%;}
+	.form-group li.checkbox-block{flex-direction: column;}
+	.form-group li.checkbox-block > div{padding: 10px 0;}
+	.social-icons{display: none;}
+
+	/*subscription2*/
+	.subcription-amount {
+	font-size: 14px;
+	line-height: 24px;
+}
+.subcription-amount .amount span {
+	font-size: 18px;
+}
+.subcription-amount .amount strong {
+	font-size: 24px;
+}
+	.subcription-amount .amount span.amount-label {
+	font-size: 12px;
+	padding: 0 0 0 0;
+}
+	.form-group li.card-details{flex-wrap: wrap;}
+	.card-details select {margin: 0 20px 15px 0;	width: calc(50% - 20px); }
+	.form-group li.card-details input {	width: calc(100% - 90px);	border-radius: 5px;}
+
+	ol, ul {
+		padding-left: 0;
+	}
+
+	/*Thank you page*/
+.thankyou-box p {padding: 30px 0px 20px;color: #000;font-size: 14px;}	
+.download-btn-group{position: static;}
+.download-btn-group .btn{margin: 10px;}
+.thankyou-bg .logo{padding: 20px 0;}
+.thankyou-bg .logo img{padding: 0; width: 76px; height: 80px;}
+
+/*Payment History Page*/
+.payment-logo h3 {
+	display: none;
+}
+.payment-history{flex-wrap: wrap;}
+.subscription-amount-block, .view-payment-history-text{flex-basis: 100%;}
+
+.payment-history {
+	max-width: calc(100% - 40px);
+	overflow-x: auto;
+	min-width: 750px;
+}
+.use-it-now .btn {
+	margin: 0;
+	padding: 10px 8px;
+	font-size: 14px;
+	width: 100%;
+}
+.use-it-now .col-sm-12.col-md-4 {
+	width: 100%;
+}
+ol, ul {
+	padding-left: 0 !important;
+}
+.get-otp-btn {
+    position: static;
+    margin-top: 20px;
+}
+li.otp-referal-field {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+li.otp-referal-field input {
+    width: 100%;
+    margin: 0 0 20px;
+    display: flex;
+}
+.login-bg img {
+    max-width: 76px;
+    display: none;
+}
+
+/*chat incoming call*/
+.incoming-call{height: auto;}
+
+
+}

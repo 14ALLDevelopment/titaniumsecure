@@ -1,0 +1,51 @@
+<div class="chat-popup-bg">
+    <div class="chat-popup">
+        <div class="close-icon pointer" (click)="closePopup()"><i class="fas fa-times"></i></div>
+        <h2>Profile</h2>
+        <div class="popup-profile">
+            <div class="popup-profile-img">
+                <!-- <i class="fas fa-camera"></i> -->
+                <img [src]="dialog ? (dialog.custom_data ? (dialog.custom_data.ProfilePublicUrl ? dialog.custom_data.ProfilePublicUrl : '/assets/images/user-icon-img.jpg') : '/assets/images/user-icon-img.jpg' ) : '/assets/images/user-icon-img.jpg'"
+                onerror="this.src='/assets/images/user-icon-img.jpg';">
+            </div>
+            
+            <!-- <h2>Kirsten Mckellar <span>Ok that sounds perfect</span></h2> -->
+            <h2>{{dialog.name}}</h2>
+        </div>
+        <div class="message-setting">
+            <h3>Message Settings</h3>
+            <form [formGroup]="ephemeralSettingForm">
+                <div class="ephemeral-block">
+                    <h4>Ephemeral Message Duration</h4>
+                    <div class="ephemeral-field">
+                        <div class="label-group">
+                            <input type="checkbox" formControlName="defaultTime"> <label>Default 120 Seconds</label>
+                        </div>
+                        <div class="label-group">
+                            <input type="text" formControlName="customTime" pattern="\d*" maxlength="4" placeholder="Seconds" numbersOnly>
+                            <label>Custom</label>
+                        </div>
+                    </div>
+                </div>
+            </form>    
+            <form [formGroup]="fileSharingForm">
+                <div class="file-sharing-control">
+                    <h4>File Sharing Control</h4>
+                    <div class="label-group">
+                        <input type="checkbox" formControlName="all">
+                        <label>Allow users to share and download files</label>
+                    </div>
+                    <div class="label-group">
+                        <input type="checkbox" formControlName="view" >
+                        <label>User can only view file in Titanium app</label>
+                    </div>
+                </div>
+            </form>
+            
+            <div class="button-group">
+                <button type="button" class="btn red" (click)="closePopup()">Close</button>
+                <button type="button" class="btn red" (click)="update()">Update</button>
+            </div>
+        </div>
+    </div>
+</div>

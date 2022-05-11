@@ -1,0 +1,94 @@
+/*popup css defautl*/
+.chat-popup-bg {position: absolute;left: 0;top: 0;width: 100%;height: 100%;background: rgba(0,23,89,0.8);z-index: 99; overflow-y: auto;}
+.chat-popup {max-width: 500px;margin: 0 auto;background: url(/assets/images/chat-popup-bg.jpg) no-repeat center top; background-size: cover;
+box-shadow: rgba(94,94,94,0.5) 3px 4px 26px;padding: 30px 40px;border-radius: 5px; position: relative; min-height: 70vh;}
+ 
+.chat-popup h2, .chat-popup h3 {color: #fff;font-size: 30px;font-weight: 400;text-align: center;padding: 0 0 15px;margin: 0;}
+ 
+.btn.red {position: relative;background: #913031;padding: 7px 50px 20px;z-index: 9;border-radius: 5px;font-size: 16px;}
+.btn.red::before {content: "";background: #ed3910;width: 100%;height: 100%;position: absolute;top: -5px;left: 0;z-index: -2;border-radius: 5px;}
+.button-group button:last-child {margin-left: 0;}
+.close-icon {position: absolute;right: -10px;top: 0;background: #e72311;width: 22px;height: 22px;display: flex;justify-content: center;
+border-radius: 100%;font-size: 14px;align-items: center;z-index: 999;}
+
+/*End popup css defaut*/
+
+.audio-call {max-width: 890px;display: flex;align-items: center;justify-content: center;text-align: center; height: calc(100% - 60px);}
+.call-profile-img {
+	position: absolute;
+	top: 84px;
+	right: 20px;
+}
+.mike-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.call-profile-img {width: 178px;height: 178px;margin: 0px auto 25px;border-radius: 10px;overflow: hidden;}
+.call-profile-img img {height: 100%;width: 100%;object-fit: cover;}
+.call-profile-img-audio {width: 235px;height: 235px;margin: 0px auto 25px;border-radius: 100%;overflow: hidden;}
+.call-profile-img-audio img {height: 100%;width: 100%;object-fit: cover;}
+.chat-controls {background: #e0e2e6;padding: 10px 35px;border-radius: 80px;margin-top: auto;display: flex;align-items: center;justify-content: center;margin: 16% auto 0; position: relative;}
+.chat-controls .chat-action{top: auto; bottom: 0; left: 100%; right: auto;padding: 16px 20px 10px;}
+.chat-controls .chat-action li{border: 0;} 
+.chat-controls .chat-action li a{display: flex; white-space: nowrap; padding: 6px 0; align-items: center;}
+.chat-controls > i {width: 48px;height: 48px;align-items: center;justify-content: center;display: flex;border-radius: 100%;background: #fff;margin: 0 12px;color: #1a1a1a;}
+.chat-controls > i.fa-phone-slash {background: red;font-size: 22px;color: #fff;height: 72px;width: 72px;}
+.chat-popup.audio-call p {color: #979c91;padding: 0;font-size: 14px;}
+.call-timer {font-size: 20px;}
+
+.chat-action {background: #001758;box-shadow: rgba(94,94,94,0.5) 3px 4px 26px;display: flex;position: absolute; padding: 5px 20px;
+border-radius: 10px;right: 0;top: 20px;z-index: 9;}
+.chat-action ul {padding: 0;margin: 0;}
+.chat-action li {border-bottom: #334579 solid 1px;}
+.chat-action li:last-child {padding: 0;border: 0;}
+.chat-action li a {padding: 10px 0;display: block;text-decoration: none;color: #b8bbc7;font-size: 14px;}
+.chat-action li a i {padding: 0 10px 0 0;font-size: 16px;}
+
+.video-call-img {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+	overflow: hidden;
+}
+.video-call-img img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
+.video-call-controls{position: relative; z-index: 2; margin:auto auto 0;}
+.video-title-bar {
+	position: absolute;
+	top: 0;
+	background: rgba(0,23,90,0.5);
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	padding: 17px 30px;
+}
+.chat-popup .video-title-bar h2 {
+	font-size: 24px;
+	padding: 0;
+}
+.video-call-img video, .call-profile-img video {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+/*Responsive*/
+@media screen and (max-width:1023px){
+    .chat-controls .chat-action {top: auto;bottom: 80px;right: 30px;left: auto;padding: 16px 20px 10px;}
+}
+@media screen and (max-width:767px){
+    .call-profile-img {width: 160px;height: 160px;}
+    .chat-popup h2{font-size: 22px; }
+    .chat-popup.audio-call p{font-size: 12px;}
+    .chat-controls {padding: 6px 20px;margin: 10% auto 0;}
+    .chat-controls i {width: 32px;height: 32px;margin: 0 6px;}
+    .chat-controls i.fa-phone-slash {font-size: 22px;height: 48px;width: 48px;}
+	.call-timer {font-size: 12px;}
+	.chat-popup .video-title-bar h2{font-size: 14px;}
+}

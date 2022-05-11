@@ -1,0 +1,89 @@
+<div class="chat-area">
+  <div class="chat-area-header">
+    <div class="chat-header-left pointer" (click)=" dialog.type == 3 ? openMessageSettingPopup() : showUpdateDialog()">
+      <!-- <img [src]="dialog.custom_data && dialog.type == 3 ? (dialog.custom_data.ProfilePublicUrl ? dialog.custom_data.ProfilePublicUrl : '/assets/images/user-icon-img.jpg') : '/assets/images/user-icon-img.jpg'"
+        onerror="this.src='/assets/images/user-icon-img.jpg';"> -->
+      <img
+        [src]="dialog.type == 3 ? (dialog.custom_data && dialog.custom_data.ProfilePublicUrl ? dialog.custom_data.ProfilePublicUrl : '/assets/images/user-icon-img.jpg') : (dialog.photo ? dialog.photo : '/assets/images/group_icon.png') "
+        onerror="this.src='/assets/images/user-icon-img.jpg';">
+      <h3>{{dialog.name}}</h3>
+    </div>
+    <div class="chat-header-right">
+      <span class="join-call-btn pointer" *ngIf="videoConferenceService.callIsInProgress && dialog.type != 3"
+        (click)="videoConferenceService?.acceptIncomingConferenceCall();">Join Call</span>
+
+      <span *ngIf="!videoConferenceService.callIsInProgress" class="pointer"
+        (click)="dialog.type == 3 ? makeCall() : openVideoconference(2)"><i class="fas fa-phone"></i></span>
+      <span *ngIf="!videoConferenceService.callIsInProgress" class="pointer"
+        (click)="dialog.type == 3 ? makeVideoCall() : openVideoconference(1)"><i class="fas fa-video"></i></span>
+
+
+      <span class="pointer" (click)="toggleDeleteConfirmation(dialog)"><i class="fas fa-trash"></i></span>
+      <!-- <span class="pointer" (click)="clearAllMessages()"><i class="fas fa-ellipsis-v"></i></span> -->
+    </div>
+  </div>
+  <div class="chat-body">
+    <ng-scrollbar #scrollable>
+      <div class="scroll" (scroll)="loadMoreMessages($event)">
+        <div *ngIf="messages && messagesLoaded">
+          <ng-container *ngFor="let data of messages">
+            <!-- <p *ngIf="data[1].length > 0" style="display: flex; justify-content: center;padding: 10px; color:white;">{{data[0]}}</p> -->
+            <app-message *ngFor="let message of data[1];" (picClickEvent)="openFullScreen($event)"
+              (openDocumentEvent)="openDocumentPopup($event)" (openVideoEvent)="openVideoPopup($event)" [dialog]="dialog" [message]="message"
+              id="{{message._id}}">
+            </app-message>
+          </ng-container>
+          <div *ngIf="attachment_uploading" class="fa-3x" style="display: flex; justify-content: center;padding: 30px;">
+            <i class="fas fa-circle-notch fa-spin"></i>
+          </div>
+        </div>
+
+        <div *ngIf="!messages || !messagesLoaded" style="display: flex; justify-content: center;padding: 30px;">
+          <div class="fa-2x">
+            <i class="fas fa-circle-notch fa-spin"></i>
+          </div>
+        </div>
+
+      </div>
+    </ng-scrollbar>
+
+  </div>
+  <div class="chat-message-footer">
+    <div class="chat-input-area">
+      <div></div>
+      <!-- <i class="fas fa-smile-beam"></i> -->
+
+      <input #field autocapitalize="off" (keydown)="onKeydown($event)" (keyup.shift)="shiftDown = false"
+        autocomplete="off" autocorrect="off" autofocus class="" [(ngModel)]="messageField" name="message_feald"
+        placeholder="Type a message">
+    </div>
+    <div class="chat-action-block">
+      <label for="attach_btn">
+        <i class="fas fa-paperclip"></i>
+        <input accept="image/*,video/mp4,.pdf,.docx,.xlsx" class="attach_input" id="attach_btn"
+          (change)="prepareToUpload($event)" name="attach_file" type="file" />
+      </label>
+
+      <i class="fas fa-paper-plane" (click)="onSubmit()"></i>
+    </div>
+  </div>
+</div>
+
+<ng-image-fullscreen-view [images]="imageObject" [imageIndex]="selectedImageIndex" [show]="showFlag"
+  (close)="closeEventHandler()"></ng-image-fullscreen-view>
+
+<app-doc-viewer *ngIf="showDocument && documentAttachment" [documentAttachment]="documentAttachment"
+  (closeViewerEvent)="closeDocumentPopup()"></app-doc-viewer>
+
+<app-video-viewer *ngIf="showVideo && videoAttachment" [videoAttachment]="videoAttachment"
+  (closeVideoViewerEvent)="closeVideoPopup()"></app-video-viewer>
+
+<div *ngIf="dialog.deleteConfirm" class="cnf-popup-block" (click)="toggleDeleteConfirmation(dialog)">
+  <div class="cnf-popup">
+    {{dialog.type == 3  ? "Do you really want to delete this chat ? ": "Do you really want to delete this group chat ?"}}
+    <div class="btn-group-popup">
+      <div class="btn" (click)="quitFromTheDialog()" >Yes</div>
+      <div class="btn" (click)="toggleDeleteConfirmation(dialog)">No</div>
+    </div>
+  </div>
+</div>

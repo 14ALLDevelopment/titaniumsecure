@@ -1,0 +1,199 @@
+<div class="wrapper">
+  <app-header [headerTitle]="'Chat'"></app-header>
+  
+  <div class="chat-bg" *ngIf="true">
+    <!---Chat-->
+      <!----------Incoming Calls Component--------->
+        <div class="incoming-call"  data-aos="flip-down" *ngIf="videoService?.showCalling  || videoConferenceService?.showCalling">
+          <!-- <app-chat-incoming-call></app-chat-incoming-call> -->
+          <app-incoming-video-call></app-incoming-video-call>
+        </div>
+      <!----------Incoming Calls Component END--------->
+    <div class="chat">
+
+        <!--Chat Side Bar-->
+        <div class="chat-side-bar ">
+            <app-tabs *ngIf="showMessageSettingPopup && dialog" [dialog]="dialog"></app-tabs>
+            <app-my-profile *ngIf="showMyProfilePopup"></app-my-profile>
+            <app-new-chat *ngIf="showNewChatPopup" [dialog]="dialog"></app-new-chat>
+            <app-new-group-chat *ngIf="createGroupClicked" [dialog]="dialog"></app-new-group-chat>
+            <app-update-group *ngIf="updateDialog && dialog" [dialog]="dialog"></app-update-group>
+            <app-video-call *ngIf="videoDialog" [dialog]="dialog" ></app-video-call>
+            <app-video-group-call *ngIf="videoConferenceDialog" [dialog]="dialog"></app-video-group-call>
+            <div class="profile-image-block pointer">
+                <span class="profile-image" (click)="openProfile()">
+                  <img [src]="loggedinUser ? (loggedinUser.custom_data ? (loggedinUser.custom_data.ProfilePublicUrl ? loggedinUser.custom_data.ProfilePublicUrl : '/assets/images/user-icon-img.jpg') : '/assets/images/user-icon-img.jpg' ) : '/assets/images/user-icon-img.jpg'"
+                   (error)="this.src='/assets/images/user-icon-img.jpg';">
+                </span>
+                <div class="profile-name">{{loggedinUser.full_name}}</div>
+            </div>
+            <div class="profile-search">
+                <input type="text" [(ngModel)]="searchText" placeholder="Contacts & Groups" />
+                <input type="submit" />
+            </div>
+            <div class="profile-side-tab">
+                <ul>
+                    <li (click)="getChatList('chat')"  class="" [ngClass]="{'active-tab': dashboardService.chatTabSelected === 'chat'}"  ><i class="fas fa-comment-alt"></i> Chats</li>
+                    <li (click)="getChatList('group')"  class="" [ngClass]="{'active-tab': dashboardService.chatTabSelected === 'group'}"  ><i class="fas fa-user-friends"></i> Groups</li>
+                    <li (click)="showContactsTab()" class="" [ngClass]="{'active-tab': dashboardService.chatTabSelected === 'contacts'}" ><i class="fas fa-address-book"></i> Contact</li>
+                </ul>
+                <div class="chat-buttons" *ngIf="dashboardService.chatTabSelected !== 'contacts'">
+                    <button type="button" (click)="createNewChat()"><i class="fas fa-plus"></i>New Chat</button>
+                    <button type="button" (click)="createNewGroup()"><i class="fas fa-plus"></i>New Group Chat</button>
+                </div>
+                <!-- <div class="group-buttons" style="display: none;">
+                    <button type="button"><i class="fas fa-plus"></i>New Group Chat</button>
+                </div>
+                <div class="contact-buttons" style="display: none;">
+                    <button type="button"><i class="fas fa-plus"></i>Add Contact</button>
+                    <div class="other-contact">
+                        <i class="fas fa-envelope"></i>
+                        <i class="fas fa-exchange-alt"></i>
+                        <i class="fas fa-project-diagram"></i>
+                        <i class="fas fa-user-lock"></i>
+                    </div>
+                </div> -->
+            </div>
+            <div class="profile-chat-list-wrapper">
+                  <ng-scrollbar>
+                    <div class="profile-chat-list">
+                      <div *ngIf="dashboardService.chatTabSelected == 'chat'">
+                        <div *ngIf="chats.length > 0">
+                          <div  (click)="openChat(chat)"
+                          *ngFor="let chat of chats | filter:searchText" [ngClass]="{'selected': selectedChat === chat._id}"
+                          class="alphabetic-chat-list pointer" >
+                            <!-- <span class="alphabetic">C</span> -->
+                            <div class="chat-list" *ngIf="chat.type == 3">
+                              <img [src]="chat.type == 3 ? (chat.custom_data && chat.custom_data.ProfilePublicUrl ? chat.custom_data.ProfilePublicUrl : '/assets/images/user-icon-img.jpg') : (chat.photo ? chat.photo : '/assets/images/user-icon-img.jpg') "
+                                onerror="this.src='/assets/images/user-icon-img.jpg';">
+                                <div class="">
+                                    <h3>{{chat.name}}</h3>
+                                    <p>{{ chat.last_message ? chat.last_message.substr(0, 2) + '...' : '...'}}</p>
+                                </div>
+                                <div class="ellipse-counter" *ngIf="chat.unread_messages_count > 0">
+                                  <span class="counter-digit">{{chat.unread_messages_count}}</span>
+                                </div>
+                                <!-- <i class="fas fa-ellipsis-h pointer" (click)="toggleShowSettings(chat)"></i>
+                                <app-chat-action-dropdown *ngIf="chat.show_setting"></app-chat-action-dropdown> -->
+                            </div>
+                          </div>
+                        </div>
+                        
+
+                        <div *ngIf="chats.length == 0 && !isfetched" style="display: flex; justify-content: center;padding: 30px;">
+                          <div class="fa-1x" >
+                            <i class="fas fa-circle-notch fa-spin"></i>
+                          </div>
+                        </div>
+
+                        <div *ngIf="chats.length == 0 && isfetched" style="display: flex; justify-content: center;padding: 30px;">
+                          <p>No Chats Available</p>
+                        </div>
+                      </div>
+
+                      <div *ngIf="dashboardService.chatTabSelected == 'group'">
+                        <div *ngIf="chats.length > 0">
+                          <div  (click)="openChat(chat)"
+                          *ngFor="let chat of chats | filter:searchText" [ngClass]="{'selected': selectedChat === chat._id}"
+                          class="alphabetic-chat-list pointer">
+                            <!-- <span class="alphabetic">C</span> -->
+                            <div class="chat-list" *ngIf="chat.type == 2">
+                              <img [src]="chat.type == 3 ? (chat.custom_data && chat.custom_data.ProfilePublicUrl ? chat.custom_data.ProfilePublicUrl : '/assets/images/user-icon-img.jpg') : (chat.photo ? chat.photo : '/assets/images/group_icon.png') "
+                                onerror="this.src='/assets/images/group_icon.png';">
+                                <div class="">
+                                    <h3>{{chat.name}}</h3>
+                                    <p>{{ chat.last_message ? chat.last_message.substr(0,2) + '...' : '...'}}</p>
+                                </div>
+                                <div class="ellipse-counter" *ngIf="chat.unread_messages_count > 0">
+                                  <span class="counter-digit">{{chat.unread_messages_count}}</span>
+                                </div>
+                                <!-- <i class="fas fa-ellipsis-h pointer" (click)="toggleShowSettings(chat)"></i>
+                                <app-chat-action-dropdown *ngIf="chat.show_setting"></app-chat-action-dropdown> -->
+                            </div>
+                          </div>
+                        </div>
+                        
+
+                        <div *ngIf="chats.length == 0 && !isfetched" style="display: flex; justify-content: center;padding: 30px;">
+                          <div class="fa-1x" >
+                            <i class="fas fa-circle-notch fa-spin"></i>
+                          </div>
+                        </div>
+
+                        <div *ngIf="chats.length == 0 && isfetched" style="display: flex; justify-content: center;padding: 30px;">
+                          <p>No Groups Available</p>
+                        </div>
+                      </div>
+
+                      <div class="contact-sync-btn" *ngIf="dashboardService.chatTabSelected === 'contacts'">
+                        <!-- Register Contacts-->
+                        <ng-container *ngIf="registeredContacts.length > 0">
+                          <div class="chat-list pointer" (click)="startChat(contact.user.id)" *ngFor="let contact of registeredContacts | filter:searchText" >
+                            <!-- <img src="/assets/images/user-icon-img.jpg" onerror="this.src='/assets/images/user-icon-img.jpg';"> -->
+                            <img [src]="(contact.user.custom_data && contact.user.custom_data.ProfilePublicUrl) ? contact.user.custom_data.ProfilePublicUrl : '/assets/images/user-icon-img.jpg'"
+                                  onerror="this.src='/assets/images/user-icon-img.jpg';">
+                            <div class="">
+                                <h3>{{contact?.user?.full_name ? contact?.user?.full_name : contact?.user.phone }}</h3>
+                                <p>{{ contact?.user?.phone ? '+' + contact?.user.phone : '...'}}</p>
+                            </div>
+                          </div>
+                        </ng-container>
+                        
+                        <hr *ngIf="registeredContacts.length > 0">
+
+                        <div class="group-buttons" *ngIf="contactFetched.length == 0 && isAddressBookFetched">
+                          <button type="button" (click)="authenticateAndSyncGoogle($event)"><i class="fas fa-address-book"></i>Sync Google Contacts</button>
+                        </div>
+
+                        <div *ngIf="contactFetched.length == 0 && !isAddressBookFetched" style="display: flex; justify-content: center;padding: 30px;">
+                          <div class="fa-1x" >
+                            <i class="fas fa-circle-notch fa-spin"></i>
+                          </div>
+                        </div>
+
+                        <!-- Not registered contacts -->
+                        <ng-container *ngIf="contactFetched.length > 0">
+                          <div *ngFor="let group of contactFetched | filter:searchText" class="alphabetic-chat-list">
+                            <span class="alphabetic">{{group.key}}</span>
+                            <div class="chat-list" *ngFor="let contact of group.contacts" >
+                              <img src="/assets/images/user-icon-img.jpg" onerror="this.src='/assets/images/user-icon-img.jpg';">
+                              <div class="">
+                                  <h3>{{contact.name ? contact.name : 'Unnamed'}}</h3>
+                                  <p>{{ contact.phone ? '+' + contact.phone : '...'}}</p>
+                              </div>
+                              <div class="ellipse-counter pointer">
+                                <span class="invite-button">Invite</span>
+                              </div>
+                            </div>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+                    
+                  </ng-scrollbar>
+            </div>
+        </div>
+        <!--End Chat Side Bar-->
+
+        <!--Chat area-->
+        <div *ngIf="welcomeChat" class="chat-area">
+          <div class="chat-area-header">
+            <div class="chat-header-left">
+              <h3>Welcome to Titanium chat!</h3>
+            </div>
+          </div>
+          <div class="notifications j-notifications hidden"></div>
+          <div class="chat-body">
+            <div class="welcome__message">
+              <p style="color:white !important">Please select your contact to start chatting.</p>
+            </div>
+          </div>
+        </div>
+        <app-dialogs *ngIf="onChatClick && dialog" [dialog]="dialog"></app-dialogs>
+        <!--End Chat area-->
+    </div>
+    <!---Chat end-->
+  </div>
+ 
+</div>
+

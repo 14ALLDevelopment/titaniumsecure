@@ -1,0 +1,44 @@
+<div class="chat-popup-bg">
+    <div class="chat-popup new-chat">
+        <div class="close-icon" (click)="close()"><i class="fas fa-times"></i></div>
+        <h2>New Chat</h2>
+
+
+        <div class="chat-side-bar ">
+
+            <div class="profile-search">
+                <input type="text" [(ngModel)]="userName" type="text" autocomplete="off"
+                autocorrect="off" placeholder="Filter by Name"/>
+                <input type="submit" />
+            </div>
+
+            <div class="profile-chat-list-wrapper">
+
+                <div class="profile-chat-list">
+                    <ng-scrollbar>
+
+                    <div class="alphabetic-chat-list pointer" (click)="onSelectedUser(user.id)" *ngFor="let user of users | filter:userName">
+                        <div class="chat-list">
+                            <img [src]="_usersCache[user.id].custom_data ? (_usersCache[user.id].custom_data.ProfilePublicUrl ? _usersCache[user.id].custom_data.ProfilePublicUrl : '/assets/images/user-icon-img.jpg') : '/assets/images/user-icon-img.jpg'"
+                                onerror="this.src='/assets/images/user-icon-img.jpg';">
+                            <!-- <img src="/assets/images/user-icon-img.jpg" /> -->
+                            <div class="">
+                                <h3>{{ _usersCache[user.id].name}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="users.length == 0 && !isfetched" style="display: flex; justify-content: center;padding: 30px;">
+                        <div class="fa-2x" >
+                          <i class="fas fa-circle-notch fa-spin"></i>
+                        </div>
+                    </div>
+
+                    <div *ngIf="users.length == 0 && isfetched" style="display: flex; justify-content: center;height: 40vh;align-items: center;">
+                        <p>No User Found</p>
+                    </div>
+                </ng-scrollbar>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

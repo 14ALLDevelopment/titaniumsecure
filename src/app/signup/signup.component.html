@@ -1,0 +1,286 @@
+<div class="wrapper" *ngIf="!ShowThankyouScreen">
+    <section class="map-form-section login-form">
+        <!-- <div class="social-icons">
+            <ul>
+                <li>
+                    <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li>
+                    <a href="https://www.twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li>
+                    <a href="https://www.linkdin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+                </li>
+            </ul>
+        </div> -->
+    
+        <div class="login-bg">
+            <img (click)="goTOHome()" class="pointer" src="./assets/images/logo.png" />
+        </div>
+    
+        <div class="map-form" *ngIf ="steps == 1">
+            <div class="login-form-group">
+                <h3>Signup</h3>
+                <h4 class="try-text">Try Titanium free for 30 days</h4>
+                <div class="form-group">
+                    <form [formGroup]="signupForm" id="signup-form">
+                        <ul>
+                           
+                            <li class="country-dropdown" *ngIf="!showOTP">
+                                <h6>Enter your Mobile Number :</h6>
+                                <!-- <input type="text" maxlength="15" formControlName="phone_number" name="phone_number" placeholder="Phone Number" />-->
+                                <ngx-intl-tel-input [ngClass]="( signSubmit && f['phone_number']?.errors?.required || signSubmit && f['phone_number']?.errors?.validatePhoneNumber ? 'form-error' : '')"
+                                 [cssClass]="'custom'" [preferredCountries]="preferredCountries"
+                                    [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                                    [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false"
+                                    [selectedCountryISO]="CountryISO.UnitedStates" [maxLength]="15"
+                                    [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                                    [numberFormat]="PhoneNumberFormat.National" name="phone" formControlName="phone_number">
+                                </ngx-intl-tel-input>
+                        
+                            </li>
+                            <li *ngIf="showOTP">
+                                <h6>Verify by OTP</h6>
+                                <p>Enter the 6 digit OTP sent to
+                                    <strong>{{f['phone_number'].value.e164Number}}</strong>
+                                </p>
+
+                                <ngx-otp-input [config]="otpInputConfig" (otpChange)="handeOtpChange($event)"
+                                 (fill)="handleFillEvent($event)"></ngx-otp-input>
+                                <!-- <input [ngClass]="( signSubmit && f['password']?.errors?.required ? 'form-error' : '')"
+                                 type="text" autocomplete="off" formControlName="password" name="otp" placeholder="OTP" /> -->
+                                
+                                 <span *ngIf="showResendOTP" class="resend-otp-text pointer" (click)="sendOtp()">Resend
+                                    OTP</span>
+                                <span *ngIf="!showResendOTP" class="resend-otp-text">Re-send otp in {{ counter |
+                                    formatTime }}</span>
+                            </li>
+
+                            <li *ngIf="error" class="show__alert__message">
+                                <div class="alert alert-danger">
+                                    {{error}}
+                                </div>
+                            </li> 
+                            <li *ngIf="success" class="show__alert__message">
+                                <div class="alert alert-success">
+                                    {{success}}
+                                </div>
+                            </li>  
+                            <li>
+                                <!-- <button class="get-otp-btn" type="button" (click)="verifyUserSubscription()">{{windowRef?.confirmationResult ? 'Resend OTP' : 'Get OTP'}}</button>    -->
+                                <input *ngIf="!showOTP" type="button" class="btn btn-blue submitBtn" (click)="verifyUserSubscription()" name="submit" [value]="windowRef?.confirmationResult ? 'Resend OTP' : 'Get OTP'" />
+                                <input *ngIf="showOTP" type="button" class="btn btn-blue submitBtn" (click)="verifyLoginCode()" name="submit" value="Continue" />
+                            </li>
+
+                            <li class="dont-account-link">
+                                <p>Already have an account? <a [routerLink]="[ '/login' ]" routerLinkActive="active">Sign In</a></p>
+                            </li>
+                        </ul>
+                    </form>
+                    <div id="recaptcha-container"></div>
+                </div>
+            </div>
+            <div class="bottom-slide-icons">
+                <div class="active"></div>
+                <div></div>
+            </div>
+        </div>
+
+        <div class="map-form" *ngIf ="steps == 2">
+            <div class="login-form-group" [@slideInOut]>
+                <h3>Signup</h3>
+                <h4 class="try-text">Try Titanium free for 30 days</h4>
+                <div class="form-group">
+                    <form [formGroup]="signupForm" id="signup-form">
+                        <ul>
+                            <li>
+                                <input [ngClass]="( signSubmit && f['first_name']?.errors?.required ? 'form-error' : '')"
+                                type="text" formControlName="first_name" name="first_name" placeholder="First Name" />
+                                
+                            </li>
+                            <li>
+                                <input [ngClass]="( signSubmit && f['last_name']?.errors?.required ? 'form-error' : '')"
+                                 type="text" formControlName="last_name" name="last_name" placeholder="Last Name" />
+                                
+                            </li>
+                            <li>
+                                <input [ngClass]="( signSubmit && f['email_id']?.errors?.required || signSubmit && f['email_id']?.errors?.email ? 'form-error' : '')"
+                                 type="email" formControlName="email_id" name="email_id" placeholder="Email Address" email />
+                            </li>
+                            <li >
+                                <input type="text" formControlName="referral_code" name="referral_code" placeholder="Referral Code" />
+                            </li>
+                            <li class="terms-checkbox">
+                                <input  [ngClass]="( signSubmit && f['acceptTermsAndConditions']?.errors?.required ? 'form-error' : '')"
+                                type="checkbox" formControlName="acceptTermsAndConditions" name="acceptTermsAndConditions">
+                                <div>
+                                    I have read and accept the
+                                    <a [routerLink]="['/service-aggrement']">Terms of Use</a>
+                                    &nbsp;and&nbsp; 
+                                    <a [routerLink]="['/privacy-policy']">Privacy Policy</a>
+                                </div>
+                            </li>
+                            <li *ngIf="error" class="show__alert__message">
+                                <div class="alert alert-danger">
+                                    {{error}}
+                                </div>
+                            </li> 
+                            <li *ngIf="success" class="show__alert__message">
+                                <div class="alert alert-success">
+                                    {{success}}
+                                </div>
+                            </li>      
+                            <li>
+                                <input type="button" class="btn btn-orange submitBtn" (click)="onNext()" name="submit" value="Continue" />
+                            </li>
+
+                            <li class="dont-account-link">
+                                <p>Already have an account? <a [routerLink]="[ '/login' ]" routerLinkActive="active">Sign In</a></p>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+            <div class="bottom-slide-icons">
+                <div class="active"></div>
+                <div></div>
+            </div>
+        </div>
+
+        <div class="map-form" *ngIf ="steps == 3">
+            <div class="login-form-group"  [@slideInOut]>
+                <h3>Amount</h3>
+                <div class="subcription-amount">
+                    <div class="amount">
+                        <span>$</span> <strong> {{updated_price ? updated_price : 6.99}}</strong><br />
+                        <span class="amount-label">Per Month</span>
+                    </div>
+                    <div  class="subscription-des">
+                        Titanium is a messenger application that lets you connect with your people over chat, call & video calls. It works flawlessly across iOS, Android, and Web interfaces. 
+                    </div>
+                </div>
+    
+                <h3>Payment</h3>
+                <div class="form-group">
+                    <form [formGroup]="creditCardForm" id="cc-form" >
+                        <ul>
+                            <li>
+                                <input [ngClass]="( ccSubmit && ccf['card_number']?.errors?.required || ccSubmit && ccf['card_number']?.errors?.ccNumber ? 'form-error' : '')"
+                                type="text" type="tel" formControlName="card_number" #ccNumber="ccNumber" autocomplete="cc-number" ccNumber placeholder="Credit Card Number">
+                                <!-- {{ccNumber.resolvedScheme$ | async}} -->
+                                <i class="fab fa-cc-visa"></i>
+                                <!-- <div *ngIf="ccSubmit && ccf['card_number']?.errors?.required" class="validate-msg">
+                                    <p>Please enter card number</p>
+                                </div> 
+                                <div *ngIf="ccSubmit && ccf['card_number']?.errors?.ccNumber" class="validate-msg">
+                                    <p>Please enter valid card number</p>
+                                </div> -->
+                            </li>
+                            <li class="card-details">
+                                <select formControlName="exp_month" [ngClass]="( ccSubmit && ccf['exp_month']?.errors?.required ? 'form-error' : '')">
+                                    <option value="" disabled selected>MM</option>
+                                    <option value="01">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                    <option value="07">07</option>
+                                    <option value="08">08</option>
+                                    <option value="09">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+                                <select formControlName="exp_year" [ngClass]="( ccSubmit && ccf['exp_year']?.errors?.required ? 'form-error' : '')">
+                                    <option value="" disabled selected>YY</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                    <option value="2027">2027</option>
+                                    <option value="2028">2028</option>
+                                    <option value="2029">2029</option>
+                                    <option value="2030">2030</option>
+                                    <option value="2031">2031</option>                            
+                                </select>                            
+                                <input [ngClass]="( ccSubmit && ccf['cvv']?.errors?.required ? 'form-error' : '')"
+                                type="text" name="cvv" formControlName="cvv" type="tel" autocomplete="off" ccCvc placeholder="CVV">
+                                <i class="fas fa-info-circle"></i>
+                            </li>
+                
+                            <li>
+                                <input [ngClass]="( ccSubmit && ccf['card_holder_name']?.errors?.required ? 'form-error' : '')"
+                                type="text" name="name_creditcard_debitcard" formControlName="card_holder_name" placeholder="Full Name on Credit or Debit card">
+                                
+                            </li>   
+                            <li>
+                                <input [ngClass]="( ccSubmit && ccf['postal_code']?.errors?.required ? 'form-error' : '')"
+                                 type="number" name="postal_code" formControlName="postal_code" placeholder="Postal Code">
+                            </li>   
+
+                            <li *ngIf="error" class="show__alert__message" >
+                                <div class="alert alert-danger">
+                                    {{error}}
+                                </div>
+                            </li>
+    
+                            <li *ngIf="success" class="show__alert__message" >
+                                <div class="alert alert-success">
+                                    {{success}}
+                                </div>
+                            </li>
+                            <li>
+                                <input type="button" (click)="createUser()" class="btn btn-orange submitBtn" name="submit" value="Get Started">
+                            </li>
+                        </ul>
+                    </form>
+                </div>  
+            </div>
+            <div class="bottom-slide-icons">
+                <div class="active" (click)="previousStep();"></div>
+                <div class="active"></div>
+            </div>
+        </div>
+
+    </section>
+</div>
+
+<div class="wrapper" *ngIf="ShowThankyouScreen">
+    <!-- <div class="social-icons">
+        <ul>
+            <li>
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            </li>
+            <li>
+                <a href="https://www.twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+            </li>
+            <li>
+                <a href="https://www.linkdin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </li>
+            <li>
+                <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+            </li>
+        </ul>
+    </div> -->
+
+    <div class="thankyou-bg">
+        <div class="logo pointer"><img (click)="goTOHome()" src="./assets/images/logo.png" /></div>
+
+        <div class="thankyou-box box-shadow">
+            <img src="./assets/images/thankyou-img.png" />
+            <p>You have subscribed to Titanium. We have sent you download mobile app details to your inbox. Kindly check the same.</p>
+            <div class="download-btn-group">
+                <a href="https://apps.apple.com/app/id1579008216" target="_blank" class="btn btn-orange pointer"><i class="fab fa-apple"></i> Download Now</a>
+                <a href="https://play.google.com/store/apps/details?id=io.titaniumsecure" target="_black" class="btn btn-blue pointer"><i class="fab fa-android"></i> Download Now</a>
+                <a [routerLink]="[ '/login' ]" routerLinkActive="active" class="btn btn-blue pointer"><i class="fas fa-globe-americas"></i> Use Now</a>
+            </div>
+        </div>
+    </div>
+</div>

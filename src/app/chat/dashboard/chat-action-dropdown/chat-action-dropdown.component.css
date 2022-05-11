@@ -1,0 +1,7 @@
+.chat-action {background: #001758;box-shadow: rgba(94,94,94,0.5) 3px 4px 26px;display: flex;position: absolute; padding: 5px 20px;
+border-radius: 10px;right: 0;top: 20px;z-index: 9;}
+.chat-action ul {padding: 0;margin: 0;}
+.chat-action li {border-bottom: #334579 solid 1px;}
+.chat-action li:last-child {padding: 0;border: 0;}
+.chat-action li a {padding: 10px 0;display: block;text-decoration: none;color: #b8bbc7;font-size: 14px;}
+.chat-action li a i {padding: 0 10px 0 0;font-size: 16px;}

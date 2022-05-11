@@ -1,0 +1,67 @@
+<div class="chat-popup-bg">
+    <div class="chat-popup new-group-chat" *ngIf="showProfile">
+        <div class="close-icon" (click)="goBack()"><i class="fas fa-times"></i></div>
+        <h2>New Group Chat</h2>
+        <div class="popup-profile">
+            <div class="popup-profile-img">
+                <img [src]="groupImage" onerror="this.src='/assets/images/user-icon-img.jpg';">
+                <span *ngIf="!groupImage && uploading" class="loader-profile"><img
+                        src="/assets/images/loader2.gif" /></span>
+            </div>
+            <input class="pointer" #Image type="file" (change)="handleFileInput($event)" />
+        </div>
+        <div class="new-group-chat-form">
+            <input type="text" placeholder="Enter Group Name" [(ngModel)]="messageField" autocapitalize="off"
+                autocomplete="off" autocorrect="off" />
+            <button type="button" [disabled]="!messageField" class="btn red" (click)="showProfile = false">Next</button>
+        </div>
+    </div>
+
+    <div class="chat-popup new-chat" *ngIf="!showProfile">
+        <div class="close-icon" (click)="goBack()"><i class="fas fa-times"></i></div>
+        <h2>New Group Chat</h2>
+        <div class="chat-side-bar ">
+            <div class="profile-search">
+                <input type="text" [(ngModel)]="searchText" placeholder="Search people & bots" />
+                <!-- <input type="submit" /> -->
+            </div>
+
+            <div class="profile-chat-list-wrapper">
+                <div class="profile-chat-list">
+                    <ng-scrollbar>
+                        <div class="alphabetic-chat-list pointer" (click)="toggleSelectItem(user.id)"
+                            *ngFor="let user of users | filter:searchText">
+                            <div class="chat-list">
+                                <img [src]="_usersCache[user.id].custom_data ? (_usersCache[user.id].custom_data.ProfilePublicUrl ? _usersCache[user.id].custom_data.ProfilePublicUrl : '/assets/images/user-icon-img.jpg') : '/assets/images/user-icon-img.jpg'"
+                                    onerror="this.src='/assets/images/user-icon-img.jpg';">
+                                <div class="">
+                                    <h3>{{ _usersCache[user.id].name}}</h3>
+                                </div>
+                            </div>
+                            <span *ngIf="selectedUsers.indexOf(user.id) >= 0" class="checkbox-custom"><i
+                                    class="far fa-check-square" aria-hidden="true"></i></span>
+                            <span *ngIf="selectedUsers.indexOf(user.id) < 0" class="checkbox-custom"><i
+                                    class="far fa-square" aria-hidden="true"></i></span>
+
+                        </div>
+                    </ng-scrollbar>
+                    <div *ngIf="users.length == 0" style="display: flex; justify-content: center;padding: 30px;">
+                        <div class="fa-2x">
+                            <i class="fas fa-circle-notch fa-spin"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="new-group-chat-form">
+                <!-- <input *ngIf="selectedUsers.length > 1" type="text" placeholder="Enter Group Name" 
+                [(ngModel)]="messageField" [disabled]="selectedUsers.length < 2" 
+                autocapitalize="off" autocomplete="off" autocorrect="off" /> -->
+
+                <button type="button" (click)="onSubmit()" [disabled]="selectedUsers.length < 2" class="btn red">Create
+                    Group</button>
+            </div>
+        </div>
+
+    </div>
+</div>

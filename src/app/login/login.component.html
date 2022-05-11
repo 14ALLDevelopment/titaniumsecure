@@ -1,0 +1,175 @@
+<div class="wrapper">
+    <section class="map-form-section login-form">
+        <!-- <div class="social-icons">
+            <ul>
+                <li>
+                    <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li>
+                    <a href="https://www.twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li>
+                    <a href="https://www.linkdin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+                </li>
+            </ul>
+        </div> -->
+
+        <div class="login-bg">
+            <img class="pointer" (click)="goTOHome()" src="./assets/images/logo.png" />
+        </div>
+
+        <!-- <div class="map-form">
+            <div class="login-form-group">
+                <h3>Sign In</h3>
+                <p>See your growth and get consulting support!</p>
+                <div class="form-group">
+                    <form [formGroup]="loginForm" id="contact-form">
+                        <ul>
+                            <li>
+                                <label>Email Address</label>
+                                <input type="email" formControlName="email_id" name="email_id" placeholder="email@website.com" />
+                            </li>
+                            <li>
+                                <label>Password </label>
+                                <input [type]="show ? 'text' : 'password'" formControlName="password" name="Password" placeholder="*********" />
+                                <div class="show-password" [ngClass]="{'hide-password': show === true}" (click)="showPassword()" >
+                                    <i class="fas fa-eye"></i>
+                                    <i class="fas fa-eye-slash"></i></div>
+                            </li>
+                            <li class="checkbox-block">
+                                <div>
+                                    <input type="checkbox" name="remember_me" />
+                                    <label>Remember Me</label>
+                                </div>
+                                <div class="forgot-text"><a href="#">Forgot Password</a></div>
+                            </li>
+                            <li *ngIf="error" class="show__alert__message">
+                                <div class="alert alert-danger">
+                                    {{error}}
+                                </div>
+                            </li>
+                            <li>
+                                <input type="button" class="btn btn-orange submitBtn" (click)="login()" name="submit" value="Sign In" />
+                            </li>
+                            <li class="dont-account-link">
+                                <p>Don't have an account? <a [routerLink]="[ '/signup' ]" routerLinkActive="active">Sign Up</a></p>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="map-form">
+            <div class="login-form-group">
+                <h3>Sign In</h3>
+                <p>See your growth and get consulting support!</p>
+                <div class="form-group">
+                    <form [formGroup]="loginForm" id="contact-form">
+
+                        <ul>
+                            <ng-container *ngIf="!showOTP">
+                                <li>
+                                    <label>Phone Number</label>
+                                    <ngx-intl-tel-input
+                                        [ngClass]="( f['phone_number'].touched && f['phone_number']?.errors?.required || f['phone_number'].touched && f['phone_number']?.errors?.validatePhoneNumber ? 'form-error' : '')"
+                                        [cssClass]="'custom'" [preferredCountries]="preferredCountries"
+                                        [enableAutoCountrySelect]="true" [enablePlaceholder]="true"
+                                        [searchCountryFlag]="true"
+                                        [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                                        [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.UnitedStates"
+                                        [maxLength]="15" [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                                        [numberFormat]="PhoneNumberFormat.National" name="phone"
+                                        formControlName="phone_number">
+                                    </ngx-intl-tel-input>
+                                    <!-- <div *ngIf="f['phone_number'].touched  && f['phone_number']?.errors?.validatePhoneNumber" class="validate-msg">
+                                        <p>Please enter valid phone number</p>
+                                    </div> 
+                                    <div *ngIf="f['phone_number'].touched  && f['phone_number']?.errors?.required" class="validate-msg">
+                                        <p>Please enter phone number</p>
+                                    </div>  -->
+                                </li>
+
+                                <li *ngIf="error && !verificationConfirmation" class="show__alert__message">
+                                    <div class="alert alert-danger">
+                                        {{error}}
+                                    </div>
+                                </li>
+                                <li>
+                                    <button class="btn btn-blue" type="button"
+                                        (click)="verifyUserSubscription()">{{verificationConfirmation ? 'Resend OTP' :
+                                        'Get OTP'}}</button>
+                                </li>
+                            </ng-container>
+
+                            <ng-container *ngIf="verificationConfirmation && showOTP && false">
+                                <li>
+                                    <label>OTP </label>
+                                    <input
+                                        [ngClass]="( f['password'].touched && f['password']?.errors?.required ? 'form-error' : '')"
+                                        [type]="show ? 'text' : 'password'" formControlName="password" name="Password"
+                                        placeholder="*********" />
+                                    <div class="show-password" [ngClass]="{'hide-password': show === true}"
+                                        (click)="showPassword()">
+                                        <i class="fas fa-eye"></i>
+                                        <i class="fas fa-eye-slash"></i>
+                                    </div>
+
+                                    <!-- <div *ngIf="f['password'].touched  && f['password']?.errors?.required" class="validate-msg">
+                                        <p>Please enter OTP</p>
+                                    </div>    -->
+                                </li>
+
+                                <li *ngIf="error && verificationConfirmation" class="show__alert__message">
+                                    <div class="alert alert-danger">
+                                        {{error}}
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <input type="button" class="btn btn-orange submitBtn" (click)="verifyLoginCode()"
+                                        name="submit" value="Sign In" />
+                                </li>
+                            </ng-container>
+
+                            <ng-container *ngIf="verificationConfirmation && showOTP">
+                                <!-- <div class="backarrow pointer" (click)="formStepPrev()"><i class="fas fa-chevron-left"></i> Back</div> -->
+                                <h6>Verify by OTP</h6>
+                                <p>Enter the 6 digit OTP sent to
+                                    <strong>{{f['phone_number'].value.e164Number}}</strong>
+                                </p>
+
+                                <ngx-otp-input [config]="otpInputConfig" (otpChange)="handeOtpChange($event)"
+                                 (fill)="handleFillEvent($event)"></ngx-otp-input>
+
+                                <div *ngIf="error && verificationConfirmation" class="alert alert-danger">
+                                    {{error}}
+                                </div>
+
+                                <span *ngIf="showResendOTP" class="resend-otp-text pointer" (click)="sendOtp()">Resend
+                                    OTP</span>
+                                <span *ngIf="!showResendOTP" class="resend-otp-text">Re-send otp in {{ counter |
+                                    formatTime }}</span>
+                                <div class="otp-btn">
+                                    <button type="button" class="btn btn-orange submitBtn"
+                                        (click)="verifyLoginCode()">Continue</button>
+                                </div>
+                            </ng-container>
+
+                            <li class="dont-account-link">
+                                <p>Don't have an account? <a [routerLink]="[ '/signup' ]" routerLinkActive="active">Sign
+                                        Up</a></p>
+                            </li>
+
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="recaptcha-container"></div>
+    </section>
+</div>

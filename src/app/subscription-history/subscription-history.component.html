@@ -1,0 +1,70 @@
+<div class="wrapper">
+    <app-header [headerTitle]="'Subscription'"></app-header>
+    <div class="payment-history payment-table-block" *ngIf="!showNoData && apiCalled">
+        <div class="payment-table">
+            <table>
+                <tr class="table-head-lable">
+                    <th>Date</th>
+                    <th class="des-td">Description</th>
+                    <th class="payment-amount-td">Amount</th>
+                    <th class="payment-method-td">Payment Method</th>
+                    <th>Payment</th>
+                </tr>
+                <tr *ngFor="let item of subHistory; let i = index">
+                    <td>{{item?.subscription_start_date | date : 'longDate'}}</td>
+                    <td class="des-td">Subscription to Titanium</td>
+                    <td class="payment-amount-td">{{ (item.amount/100 ) | currency:'USD' :true }}</td>
+                    <td class="payment-method-td">Visa **** **** 123{{i}}</td>
+                    <td>View Receipt</td>
+                </tr>
+                <!-- <tr>
+                    <td>July 15 2021</td>
+                    <td class="des-td">Subscription to Titanium</td>
+                    <td class="payment-amount-td">$ 3.99</td>
+                    <td class="payment-method-td">Visa **** **** 1234</td>
+                    <td>View Receipt</td>
+                </tr>
+                <tr>
+                    <td>July 15 2021</td>
+                    <td class="des-td">Subscription to Titanium</td>
+                    <td class="payment-amount-td">$ 3.99</td>
+                    <td class="payment-method-td">Visa **** **** 1234</td>
+                    <td>View Receipt</td>
+                </tr>
+                <tr>
+                    <td>July 15 2021</td>
+                    <td class="des-td">Subscription to Titanium</td>
+                    <td class="payment-amount-td">$ 3.99</td>
+                    <td class="payment-method-td">Visa **** **** 1234</td>
+                    <td>View Receipt</td>
+                </tr>
+                <tr>
+                    <td>July 15 2021</td>
+                    <td class="des-td">Subscription to Titanium</td>
+                    <td class="payment-amount-td">$ 3.99</td>
+                    <td class="payment-method-td">Visa **** **** 1234</td>
+                    <td>View Receipt</td>
+                </tr> -->
+            </table>
+            <div class="toolbar">
+                <div class="toolbar-dropdown">
+                    <span>Show</span>
+                    <select>
+                        <option>10</option>
+                        <option>20</option>
+                    </select>
+                    <span>Entries</span>
+                </div>
+                <div class="toolbar-text">Showing 1-10 of {{subHistory?.length}} entries</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="payment-history-page" *ngIf="showNoData && apiCalled">
+        <div class="payment-history box-shadow">
+            <div class="no-subscription" >
+                <h4>No subscription history</h4>
+            </div>  
+        </div>
+    </div>
+</div>

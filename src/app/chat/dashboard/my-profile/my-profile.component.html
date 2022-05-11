@@ -1,0 +1,42 @@
+<div class="chat-popup-bg">
+    <div class="chat-popup my-profile">
+        <div class="close-icon" (click)="close()" ><i class="fas fa-times"></i></div>
+        <h2>My Profile</h2>
+        <div class="popup-profile">
+            <div class="popup-profile-img" >
+                <!-- <i class="fas fa-camera"></i> -->
+                <img [src]=" imageUrl ? imageUrl : (loggedinUser ? (loggedinUser.custom_data ? (loggedinUser.custom_data.ProfilePublicUrl ? loggedinUser.custom_data.ProfilePublicUrl : '/assets/images/user-icon-img.jpg') : '/assets/images/user-icon-img.jpg' ) : '/assets/images/user-icon-img.jpg') "
+                onerror="this.src='/assets/images/user-icon-img.jpg';">
+                <span *ngIf="!imageUrl && uploading" class="loader-profile"><img src="/assets/images/loader2.gif" /></span>
+            </div>
+
+            <input class="pointer" #Image type="file" (change)="handleFileInput($event)"/>
+        </div>
+        <div class="new-group-chat-form">
+            <form [formGroup]="profileForm" id="profile-form">
+                <div class="form-group-profile">
+                <!-- <span class="checkbox-custom"><input type="checkbox"><label></label></span> -->
+                    <div>
+                        <label>Name</label>
+                        <input type="text" formControlName="full_name" placeholder="Full Name">
+                    </div>
+                </div>
+                <div class="form-group-profile">
+                    <!-- <span class="checkbox-custom"><input type="checkbox"><label></label></span> -->
+                    <div>
+                        <label>E-mail</label>
+                        <input type="text" formControlName="email" placeholder="E-mail">
+                    </div>
+                </div>
+            </form>
+                
+
+            <div class="button-group">
+                <button type="button" class="btn red" (click)="close()">Close</button>
+                <button type="button" class="btn red" (click)="saveProfile()">Save Profile</button>
+            </div>
+        </div>
+
+
+    </div>
+</div>

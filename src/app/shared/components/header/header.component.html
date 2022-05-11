@@ -1,0 +1,32 @@
+<div class="payment-header">
+    <div class="payment-logo pointer">
+        <img (click)="goToHome();" src="./assets/images/logo.png" />
+        <h3>{{headerTitle}}</h3>
+    </div>
+    <div class="user-block" *ngIf="QBuser">
+        <div class="dropdown">
+            <button class="buser-icon dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                <img (click)="goToHome();" [src]="QBuser ? (QBuser.custom_data ? (QBuser.custom_data.ProfilePublicUrl ? QBuser.custom_data.ProfilePublicUrl : '/assets/images/user-icon-img.jpg') : '/assets/images/user-icon-img.jpg' ) : '/assets/images/user-icon-img.jpg'"
+                    onerror="this.src='/assets/images/user-icon-img.jpg';">
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="user-name">
+                    <h3>{{QBuser.full_name}}</h3>
+                    <!-- <span><a>change</a></span> -->
+                </div>
+                <ul>
+                    <li class="subscription-menu">
+                        <a [routerLink]="[ '/dashboard' ]" routerLinkActive="active"><em></em>Subscription</a>
+                    </li>
+                    <li class="account-setting-menu">
+                        <a><em></em>Account Settings</a>
+                    </li>
+                    <li class="logout-menu pointer">
+                        <a (click)="logOut()"><em></em>Log Out</a>
+                    </li>
+                </ul>
+            </div>
+            <span class="user-name-text">{{QBuser.full_name}} <i class="fas fa-chevron-down"></i></span>
+        </div>
+    </div>
+</div>

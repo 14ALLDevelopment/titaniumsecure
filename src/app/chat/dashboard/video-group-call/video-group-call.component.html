@@ -1,0 +1,192 @@
+<div class="chat-popup-bg">
+    <div class="chat-popup audio-call audio-call-group"
+        *ngIf="!videoConferenceService.firstTime && videoConferenceService.isInCall">
+
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-6 chat-group-profile">
+                <div>
+                    <div class="call-profile-img pointer" *ngIf="videoConferenceService.callType == 1"
+                        (click)="toggleFullscreen($event.currentTarget)">
+                        <!-- <img class="loader-video-overlay" src="/assets/images/loader-video1.gif" /> -->
+                        <video id="localVideo" poster="/assets/images/loading-video.gif" src="" oncanplay="this.play()"
+                            onloadedmetadata="this.muted = true" playsinline autoplay muted></video>
+                    </div>
+                    <div class="call-profile-img-audio pointer" *ngIf="videoConferenceService.callType == 2"
+                        (click)="toggleFullscreen($event.currentTarget)">
+                        <!-- <img [src]="(_usersCache[loggedinUser.id] && _usersCache[loggedinUser.id].custom_data)  ? (_usersCache[loggedinUser.id].custom_data.ProfilePublicUrl ? _usersCache[loggedinUser.id].custom_data.ProfilePublicUrl : '/assets/images/user-icon-img.jpg') : '/assets/images/user-icon-img.jpg'"
+                            onerror="this.src='/assets/images/user-icon-img.jpg';"> -->
+                        <img [src]="loggedinUser ? (loggedinUser.custom_data ? (loggedinUser.custom_data.ProfilePublicUrl ? loggedinUser.custom_data.ProfilePublicUrl : '/assets/images/user-icon-img.jpg') : '/assets/images/user-icon-img.jpg' ) : '/assets/images/user-icon-img.jpg'"
+                            (error)="this.src='/assets/images/user-icon-img.jpg';">
+                    </div>
+                    <div class="" [ngClass]="{'video-thumb-detail': videoConferenceService.callType == 1}">
+                        <h2 id="bitrate{{loggedinUser.id}}"></h2>
+                        <h2>{{loggedinUser.full_name}} (you)</h2>
+                        <div class="chat-controls" *ngIf="videoConferenceService.userVideoInputDevices.length == 0 || videoConferenceService.userAudioInputDevices.length == 0 "
+                          [ngClass]="{'audio': videoConferenceService.callType == 2}">
+                            <!-- <i class="fas fa-microphone" (click)="toggleMute($event)"></i> -->
+                            <i class="fas fa-sync pointer" (click)="videoConferenceService.checkUserstreamAvailable()"></i>
+                            <!-- <i class="fas fa-phone-slash"></i> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-6 chat-group-profile" *ngFor="let user of InCallParticipants">
+                <div>
+                    <div class="call-profile-img pointer" *ngIf="videoConferenceService.callType == 1"
+                        (click)="toggleFullscreen($event.currentTarget)">
+                        <!-- <img class="loader-video-overlay" src="/assets/images/loader-video1.gif" /> -->
+                        <video id="remoteVideo{{user}}" poster="/assets/images/loading-video.gif" src="" playsinline
+                            autoplay></video>
+                    </div>
+                    <div class="call-profile-img-audio pointer" *ngIf="videoConferenceService.callType == 2"
+                        (click)="toggleFullscreen($event.currentTarget)">
+                        <img *ngIf="videoConferenceService.callType == 2"
+                            [src]="_usersCache[user].custom_data ? (_usersCache[user].custom_data.ProfilePublicUrl ? _usersCache[user].custom_data.ProfilePublicUrl : '/assets/images/user-icon-img.jpg') : '/assets/images/user-icon-img.jpg'"
+                            onerror="this.src='/assets/images/user-icon-img.jpg';">
+                    </div>
+                    <audio id="remoteAudio{{user}}" playsinline autoplay></audio>
+
+                    <div class="" [ngClass]="{'video-thumb-detail': videoConferenceService.callType == 1}">
+                        <h2>{{_usersCache[user] ? _usersCache[user].name : "Unknown " }}</h2>
+                        <div class="chat-controls" [ngClass]="{'audio': videoConferenceService.callType == 2}">
+                            <i class="fas fa-volume-up pointer" (click)="toggleRemoteAudio($event,user)"></i>
+                            <i class="fas fa-video pointer" *ngIf="videoConferenceService.callType == 1" (click)="toggleRemoteVideo($event,user)"></i>
+                            <!-- <i class="fas fa-phone-slash" (click)="showBitrate(user)" ></i> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-controls-group-block">
+            <div class="chat-controls">
+                <div class="audio-channel-list video-channel-list" *ngIf="videoConferenceService.callType == 1" >
+                    <i class="fas fa-video pointer" (click)="toggleLocalVideo($event)"></i>
+                    <i class="fas fa-angle-down" *ngIf="videoConferenceService.userVideoInputDevices.length > 0"></i>
+                    <select *ngIf="videoConferenceService.userVideoInputDevices.length > 0"
+                        (change)="onVideoDeviceChange($event.target.value)" style="width: 30px;" name="videoDevices"
+                        id="videoDevices">
+                        <option *ngFor="let device of videoConferenceService.userVideoInputDevices"
+                            [value]="device.deviceId">{{device.label}}</option>
+                    </select>
+                </div>
+
+                <i class="fas fa-phone-slash pointer" (click)="endCall()"></i>
+
+                <div class="audio-channel-list">
+                    <i class="fas fa-microphone pointer" (click)="toggleLocalAudio($event)"></i>
+                    <i class="fas fa-angle-down" *ngIf="videoConferenceService.userAudioInputDevices.length > 0"></i>
+                    <select *ngIf="videoConferenceService.userAudioInputDevices.length > 0"
+                        (change)="onAudioDeviceChange($event.target.value)" style="width: 30px;" name="audioDevices"
+                        id="audioDevices">
+                        <option *ngFor="let device of videoConferenceService.userAudioInputDevices"
+                            [value]="device.deviceId">{{device.label}}</option>
+                    </select>
+                </div>
+                <i class="fas fa-user-plus pointer" *ngIf="videoConferenceService.eventType != 'accept'"
+                    (click)="toggleAddParticipantPopup()"></i>
+                <!-- <i class="fas fa-ellipsis-h"></i> -->
+            </div>
+
+            <div class="call-timer" *ngIf="videoConferenceService.text">{{videoConferenceService.text === '00:00:00' ?
+                '' : videoConferenceService.text }}</div>
+        </div>
+
+    </div>
+
+    <div class="chat-popup new-chat" *ngIf="videoConferenceService.firstTime && !videoConferenceService.isInCall">
+        <div class="close-icon pointer" (click)="closeconferencePopup()"><i class="fas fa-times"></i></div>
+        <h2>Select members</h2>
+        <div class="chat-side-bar ">
+            <!-- <div class="profile-search">
+                <input type="text" [(ngModel)]="searchText" placeholder="Search people & bots" />
+            </div> -->
+            <div class="profile-chat-list-wrapper">
+                <div class="profile-chat-list">
+                    <ng-scrollbar>
+                        <div class="alphabetic-chat-list pointer" (click)="toggleSelectItem(user)"
+                            *ngFor="let user of groupMembers">
+                            <ng-container *ngIf="user !== loggedinUser.id">
+                                <div class="chat-list">
+                                    <img [src]="_usersCache[user].custom_data ? (_usersCache[user].custom_data.ProfilePublicUrl ? _usersCache[user].custom_data.ProfilePublicUrl : '/assets/images/user-icon-img.jpg') : '/assets/images/user-icon-img.jpg'"
+                                        onerror="this.src='/assets/images/user-icon-img.jpg';">
+                                    <!-- <img src="/assets/images/user-icon-img.jpg" /> -->
+                                    <div class="">
+                                        <h3>{{ _usersCache[user].name}}</h3>
+                                    </div>
+                                </div>
+                                <span *ngIf="selectedUsers.indexOf(user) >= 0" class="checkbox-custom"><i
+                                        class="far fa-check-square" aria-hidden="true"></i></span>
+                                <span *ngIf="selectedUsers.indexOf(user) < 0" class="checkbox-custom"><i
+                                        class="far fa-square" aria-hidden="true"></i></span>
+                            </ng-container>
+                        </div>
+                    </ng-scrollbar>
+                    <div *ngIf="groupMembers.length == 0" style="display: flex; justify-content: center;padding: 30px;">
+                        <div class="fa-2x">
+                            <i class="fas fa-circle-notch fa-spin"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="new-group-chat-form">
+
+                <button type="button" (click)="makeCall()" [disabled]="selectedUsers.length < 2" class="btn red">Start
+                    Call</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="chat-popup-bg" *ngIf="videoConferenceService.addParticipants && videoConferenceService.isInCall">
+    <div class="chat-popup new-chat">
+        <div class="close-icon pointer" (click)="toggleAddParticipantPopup()"><i class="fas fa-times"></i></div>
+        <h2>Select members</h2>
+        <div class="chat-side-bar ">
+            <div class="profile-chat-list-wrapper">
+                <div class="profile-chat-list">
+                    <ng-scrollbar>
+                        <div class="alphabetic-chat-list pointer" (click)="selectParticipants(user)"
+                            *ngFor="let user of groupMembers">
+                            <ng-container *ngIf="user !== loggedinUser.id">
+                                <div class="chat-list">
+                                    <img [src]="_usersCache[user].custom_data ? (_usersCache[user].custom_data.ProfilePublicUrl ? _usersCache[user].custom_data.ProfilePublicUrl : '/assets/images/user-icon-img.jpg') : '/assets/images/user-icon-img.jpg'"
+                                        onerror="this.src='/assets/images/user-icon-img.jpg';">
+                                    <!-- <img src="/assets/images/user-icon-img.jpg" /> -->
+                                    <div class="">
+                                        <h3>{{ _usersCache[user].name}}</h3>
+                                    </div>
+                                </div>
+                                <span
+                                    *ngIf="addParticipants.indexOf(user) >= 0 && InCallParticipants.indexOf(user) < 0  && selectedUsers.indexOf(user) < 0"
+                                    class="checkbox-custom"><i class="far fa-check-square"
+                                        aria-hidden="true"></i></span>
+                                <span
+                                    *ngIf="addParticipants.indexOf(user) < 0 && InCallParticipants.indexOf(user) < 0 && selectedUsers.indexOf(user) < 0"
+                                    class="checkbox-custom"><i class="far fa-square" aria-hidden="true"></i></span>
+                                <span *ngIf="InCallParticipants.indexOf(user) >= 0 && selectedUsers.indexOf(user) >= 0"
+                                    class="checkbox-custom">In Call</span>
+                                <span *ngIf="InCallParticipants.indexOf(user) < 0 && selectedUsers.indexOf(user) >= 0"
+                                    class="checkbox-custom">Calling...</span>
+                            </ng-container>
+                        </div>
+                    </ng-scrollbar>
+                    <div *ngIf="groupMembers.length == 0" style="display: flex; justify-content: center;padding: 30px;">
+                        <div class="fa-2x">
+                            <i class="fas fa-circle-notch fa-spin"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="new-group-chat-form">
+
+                <button type="button" (click)="addParticipantToCall()" [disabled]="addParticipants.length < 2"
+                    class="btn red">Add
+                    Participant</button>
+            </div>
+        </div>
+
+    </div>
+</div>

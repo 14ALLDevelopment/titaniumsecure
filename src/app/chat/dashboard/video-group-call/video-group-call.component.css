@@ -1,0 +1,254 @@
+/*popup css defautl*/
+.chat-popup-bg {position: absolute;left: 0;top: 0;width: 100%;height: 100%;background: rgba(0,23,89,0.8);z-index: 99; }
+.chat-popup {max-width: 500px;margin: 0 auto;background: url(/assets/images/chat-popup-bg.jpg) no-repeat center top; background-size: cover;
+box-shadow: rgba(94,94,94,0.5) 3px 4px 26px;padding: 30px 40px;border-radius: 5px; position: relative; min-height: 70vh;}
+ 
+.chat-popup h2, .chat-popup h3 {color: #fff;font-size: 30px;font-weight: 400;text-align: center;padding: 0 0 15px;margin: 0;}
+ 
+.btn.red {position: relative;background: #913031;padding: 7px 50px 20px;z-index: 9;border-radius: 5px;font-size: 16px;}
+.btn.red::before {content: "";background: #ed3910;width: 100%;height: 100%;position: absolute;top: -5px;left: 0;z-index: -2;border-radius: 5px;}
+.button-group button:last-child {margin-left: 0;}
+.close-icon {position: absolute;right: -10px;top: 0;background: #e72311;width: 22px;height: 22px;display: flex;justify-content: center;
+border-radius: 100%;font-size: 14px;align-items: center;z-index: 999;}
+
+/*End popup css defaut*/
+.audio-call {max-width: 890px;display: flex;align-items: center;justify-content: center;text-align: center;}
+.call-profile-img {width: 235px;height: 235px;margin: 0px auto 25px;border-radius: 100%;overflow: hidden;}
+.call-profile-img img {height: 100%;width: 100%;object-fit: cover;}
+.call-profile-img video {height: 100%;width: 100%;object-fit: cover; pointer-events: none;}
+.chat-controls {background: #e0e2e6;padding: 10px 35px;border-radius: 80px;margin-top: auto;display: flex;align-items: center;justify-content: center; position: relative;}
+.chat-controls .chat-action{top: auto; bottom: 0; left: 100%; right: auto;padding: 16px 20px 10px;}
+.chat-controls .chat-action li{border: 0;} 
+.chat-controls .chat-action li a{display: flex; white-space: nowrap; padding: 6px 0; align-items: center;}
+.chat-controls > i {width: 48px;height: 48px;align-items: center;justify-content: center;display: flex;border-radius: 100%;background: #fff;margin: 0 12px;color: #1a1a1a;}
+.chat-controls > i.fa-phone-slash {background: red;font-size: 22px;color: #fff;height: 72px;width: 72px;}
+.chat-popup.audio-call p {color: #979c91;padding: 0;font-size: 14px;}
+.call-timer {font-size: 20px;}
+
+.chat-action {background: #001758;box-shadow: rgba(94,94,94,0.5) 3px 4px 26px;display: flex;position: absolute; padding: 5px 20px;
+border-radius: 10px;right: 0;top: 20px;z-index: 9;}
+.chat-action ul {padding: 0;margin: 0;}
+.chat-action li {border-bottom: #334579 solid 1px;}
+.chat-action li:last-child {padding: 0;border: 0;}
+.chat-action li a {padding: 10px 0;display: block;text-decoration: none;color: #b8bbc7;font-size: 14px;}
+.chat-action li a i {padding: 0 10px 0 0;font-size: 16px;}
+
+.audio-call {max-width: 890px;display: flex;align-items: flex-start;justify-content: center;text-align: center; overflow-y: auto; max-height: 100%;
+background-size: cover; flex-wrap: wrap;}
+.call-profile-img-audio {width: 235px;height: 235px;margin: 0px auto 25px;border-radius: 100%;overflow: hidden;}
+.call-profile-img-audio img {height: 100%;width: 100%;object-fit: cover;}
+.audio-call-group .row {width: 100%;}
+.audio-call-group .row > div > div{  border-bottom: #1a2f6c solid 1px; margin-bottom: 18px; position: relative;}
+.audio-call-group > div:nth-last-child(2) > div > div{  border-bottom: 0 !important; }
+.chat-group-profile .call-profile-img-audio {width: 90px;margin: 0px auto 6px;border-radius: 100%;overflow: hidden;height: 90px;}
+.chat-group-profile .call-profile-img {width: 100%;margin: 0px auto 6px;border-radius: 20px;overflow: hidden;height: 160px;position: relative;}
+.chat-group-profile h2, .chat-group-profile h3 {color: #fff;font-size: 13px;font-weight: 400;text-align: center;padding: 0 0 10px;margin: 0; letter-spacing: 0.5px;}
+.chat-group-profile .chat-controls{background: none;padding: 0;display: flex;align-items: center;justify-content: center;margin: 0;position: relative;}
+.chat-group-profile .chat-controls .audio{background: none;padding: 0;display: flex;align-items: center;justify-content: center;margin: 0 0 18px;position: relative;}
+.chat-group-profile .chat-controls > i{width: 25px;height: 25px;align-items: center;justify-content: center;display: flex;border-radius: 100%;background: rgba(245,247,249,0.7);
+color: #1a1a1a;font-size: 12px;margin: 0 5px;}
+.chat-group-profile .chat-controls > i.fa-phone-slash {background: rgba(245,247,249,0.7);font-size: 12px;color: #1a1a1a;height: 25px;width: 25px;}
+.video-thumb-detail {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	background: rgba(0,0,0,0.5);
+	display: flex;
+	align-items: center;
+    border-radius: 0 0 20px 20px;
+	flex-direction: column;
+	padding: 4px 0;
+}
+.chat-controls-group-block {
+	display: flex;
+    flex-wrap: wrap;
+	align-items: center;
+    margin-top: auto;
+	position: relative;
+    padding-top: 10px;
+}
+.chat-controls-group-block .call-timer {
+	position: absolute;
+	left: 100%;
+	width: 140px;
+	text-align: right;
+}
+.mike-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.audio-channel-list {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #fff;
+	padding: 5px;
+	height: 40px;
+	border-radius: 35px;
+}
+.audio-channel-list i {
+	color: #000;
+}
+.fas.fa-microphone.pointer, .fas.fa-microphone-slash, .fa-video.pointer, .fa-video-slash {
+	width: 40px;
+}
+.call-profile-img img.loader-video-overlay {
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	left: 50%;
+	margin: -16px 0 0 -16px;
+	top: 50%;
+}
+.audio-channel-list i.fa-angle-down {
+position: absolute;
+font-size: 20px;
+right: 15px;
+padding: 2px 0 0;
+}
+ .audio-channel-list select, .video-channel-list select {
+    word-wrap: normal;
+    border-radius: 100%;
+    border: 0;
+    padding: 3px;
+    -webkit-appearance: none;
+    font-size: 0;
+    background: none;
+    height: 40px;
+    z-index: 9;
+	border: 0;
+    outline: none;
+}
+ .audio-channel-list select option, .video-channel-list select option {
+	font-size: 14px;
+}
+ 
+/*Responsive*/
+@media screen and (max-width:1023px){
+    .chat-controls-group-block .call-timer {width: 120px;}
+}
+@media screen and (max-width:767px){
+    .call-profile-img {width: 160px;height: 160px;}
+	.call-profile-img-audio {width: 160px;height: 160px;}
+    .chat-popup h2{font-size: 22px; }
+    .chat-popup.audio-call p{font-size: 12px;}
+    .chat-controls {padding: 6px 20px;margin: 10% auto 0;}
+    .chat-controls i {width: 32px;height: 32px;margin: 0 6px;}
+    .chat-controls i.fa-phone-slash {font-size: 22px;height: 48px;width: 48px;}
+    .chat-controls-group-block .call-timer {position: static;width: 100%;text-align: center;padding: 20px 0 0;}
+	.chat-popup h2 {font-size: 14px;}
+	.chat-popup {padding: 20px;}
+}
+
+/** This below css is for listing member list popup */
+
+ng-scrollbar.ng-scrollbar {
+    height: calc(100% - 0px);
+}
+
+.profile-chat-list{
+	height: calc(70vh - 160px);
+	overflow-y: auto;
+	margin: 20px 0;
+}
+
+.chat-side-bar {flex: 0 0 335px;padding: 0 15px 0 0;border-radius: 5px 0 0 5px;}
+
+.profile-search {display: flex;width: 100%;position: relative;}
+.profile-search::before {content: "\f002";font-family: "Font Awesome 5 Free";color: #4d4e54;font-weight: 900;z-index: 9;width: 36px;display: flex;
+align-items: center;justify-content: center;position: absolute;left: 0;top: 0;height: 100%;}
+.profile-search input {width: 100%;height: 41px;border-radius: 3px;background: #fff;border: 0;padding: 0 0 0 40px;}
+.profile-search input[type="submit"] {position: absolute;left: 0;top: 0;width: auto;font-size: 0;background: none;border: 0;width: 36px;}
+ 
+.alphabetic-chat-list {margin: 0 0 10px;border-bottom: #0f2563 solid 1px;}
+.chat-list {display: flex;align-items: center;padding: 0 0 30px;}
+.chat-list img {width: 50px;height: 50px;border-radius: 100%;object-fit: cover;margin: 0 15px 0 0;}
+.alphabetic {font-size: 16px;color: #98a3be;padding: 0px 0 15px;display: flex;flex: 1;}
+.chat-list p, .chat-list h3 {color: #fff;font-size: 16px;margin: 0;padding: 0;padding: 0 0 2px;}
+.chat-list p {font-size: 12px;color: #9599ae;}
+
+/*group chat */
+
+.new-group-chat .popup-profile-img{margin: 20px auto;}
+.new-group-chat-form {
+	display: flex;
+	flex-direction: column;
+}
+.new-group-chat-form input {
+	width: 100%;
+	height: 52px;
+    padding: 10px 20px;
+	margin: 20px 0 20px;
+	border-radius: 5px;
+	border: 0;
+}
+
+/*New Chat*/
+
+.new-chat .profile-chat-list {
+	padding: 20px;
+}
+ .new-chat .alphabetic-chat-list {
+	margin: 0;
+}
+.new-chat .chat-list {
+	padding: 15px 0;
+}
+.new-chat .alphabetic-chat-list {
+	display: flex;
+    padding-right: 25px;
+	justify-content: space-between;
+}
+.new-chat .btn.red {width: 100%;}
+.btn.red {position: relative;background: #913031;padding: 7px 50px 20px;z-index: 9;border-radius: 5px;font-size: 16px; }
+.btn.red::before {content: "";background: #ed3910;width: 100%;height: 100%;position: absolute;top: -5px;left: 0;z-index: -2;border-radius: 5px;}
+/*custom checkbox*/
+.checkbox-custom {position: relative; padding: 25px 0 0;}
+.checkbox-custom label{position: relative;}
+.checkbox-custom input{position: absolute;z-index: 9;left: -20px;top: 28px;opacity: 0;width: 20px;height: 20px;}
+.checkbox-custom input + label::before {content: "";background: #808bad;font-weight: 900;font-family: "Font Awesome 5 Free";
+padding: 0 0 0 2px;width: 20px;height: 20px;line-height: 18px; border-radius: 3px;font-size: 14px; width: 18px; height: 18px; 
+position: absolute; left: -19px;top: -3px;color: #042161;}
+.checkbox-custom input:checked + label::before {content: "\f00c";background: red; font-weight: 900; font-family: "Font Awesome 5 Free";}
+ 
+
+
+.full-video-click {
+	height: 50vh;
+	width: calc(100% - 80px);
+	position: absolute;
+	z-index: 9;
+}
+.full-video-click > div{height: 100%;}
+.full-video-click  .call-profile-img{height: 100%;}
+
+.full-audio-click {
+	height: 50vh;
+	width: calc(100% - 80px);
+	position: absolute;
+	z-index: 9;
+	display: flex;
+	align-items: center;background: url(/assets/images/chat-popup-bg.jpg) no-repeat center top;
+	background-size: cover;
+	justify-content: center;
+}
+.full-audio-click > div{
+	height: 100%;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	
+}
+
+.full-audio-click > div {
+	height: auto;
+}
+.full-audio-click .call-profile-img-audio {
+	width: 235px;
+	margin: 0px auto 6px;
+	border-radius: 100%;
+	overflow: hidden;
+	height: 235px;
+}

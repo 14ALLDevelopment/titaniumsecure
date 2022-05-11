@@ -1,0 +1,163 @@
+<div class="wrapper">
+    <div class="top-btns" *ngIf="!user || !QBuser">
+        <a [routerLink]="[ '/login' ]" routerLinkActive="active" class="sign-in-btn-text">Sign In</a>
+        <a [routerLink]="[ '/signup' ]" routerLinkActive="active" class="btn btn-orange banner-btn">Get Started</a>
+    </div>
+    <div class="video-wrapper">
+        <video class="video-banner" loop="true" autoplay muted oncanplay="this.play()"
+            onloadedmetadata="this.muted = true">
+            <source src="./assets/videos/banner-video.mp4" type="video/mp4" />
+        </video>
+    </div>
+    <div class="container">
+        <div class="logo" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+            <img src="./assets/images/logo.png" />
+        </div>
+        <div class="user-block" *ngIf="user && QBuser">
+            <div class="top-btns dashboard-btn">
+                <a [routerLink]="[ '/chat' ]" routerLinkActive="active" class="btn btn-orange banner-btn">Dashboard</a>
+            </div>
+            <div class="dropdown">
+                <button class="buser-icon dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                    <img [src]="QBuser ? (QBuser.custom_data ? (QBuser.custom_data.ProfilePublicUrl ? QBuser.custom_data.ProfilePublicUrl : '/assets/images/user-icon-img.jpg') : '/assets/images/user-icon-img.jpg' ) : '/assets/images/user-icon-img.jpg'"
+                        onerror="this.src='/assets/images/user-icon-img.jpg';">
+                </button>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <div class="user-name">
+                        <h3>{{QBuser.full_name}}</h3>
+                        <!-- <span><a href="#">change</a></span> -->
+                    </div>
+                    <ul>
+                        <li class="subscription-menu">
+                            <a [routerLink]="[ '/dashboard' ]" routerLinkActive="active"><em></em>Subscription</a>
+                        </li>
+                        <li class="account-setting-menu">
+                            <a><em></em>Account Settings</a>
+                        </li>
+                        <li class="logout-menu pointer">
+                            <a (click)="logOut();"><em></em>Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="banner">
+            <!-- <div class="social-icons">
+                <ul>
+                    <li>
+                        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkdin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </li>
+                </ul>
+            </div> -->
+            <h1 data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">Ultra-Secure Communications from Mobile to
+                Desktop</h1>
+            <p data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">For Individuals, Business & Enterprise Users
+            </p>
+            <p data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">For Users that value their business and
+                personal communications</p>
+            <a data-aos="fade-up" data-aos-anchor-placement="bottom-bottom" [routerLink]="[ '/login' ]"
+                routerLinkActive="active" class="btn btn-orange banner-btn">Get Started</a>
+            <div class="banner-img"><img src="./assets/images/banner-mobile-img.png" /></div>
+            <div class="banner-des" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+                <p>Titanium presents a simple and cost-effective military-grade security solution for:</p>
+
+                <p>Ideal for:</p>
+                <ul>
+                    <li>Government & Leadership</li>
+                    <li>Military Command & Tactical</li>
+                    <li>Law Enforcement Organizations</li>
+                    <li>Commerce & Trade Representatives</li>
+                    <li>Healthcare Professionals & Patients (HIPAA Compliant)</li>
+                    <li>Finance & Banking</li>
+                    <li>Legal Professionals & Clients</li>
+                    <li>Manufacturing & Engineering</li>
+                    <li>Church & Ministry Organizations</li>
+                    <li>Transportation & Logistics</li>
+                    <li>Public Safety & Customs, Border Security</li>
+                    <li>and all Users that value their Data & Communications.</li>
+                </ul>
+                <p>It's Your Data, on Titanium You Own it!</p>
+            </div>
+            <div class="trial-getstarted-section">
+                <div>
+                    <h3>Try Titanium free for <br><span>30 Days</span></h3>
+                    <a data-aos="fade-up" data-aos-anchor-placement="bottom-bottom" [routerLink]="[ '/login' ]"
+                        routerLinkActive="active" class="btn btn-orange banner-btn pointer">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section>
+        <div class="container">
+            <div class="row even">
+                <div class="col-sm-12 col-md-6" data-aos="fade-right">
+                    <h3>One-to-one and Groups Chats</h3>
+                    <p>Send and receive messages individually or connect with your people in group chats.</p>
+                </div>
+                <div class="col-sm-12 col-md-6" data-aos="fade-left">
+                    <img src="./assets/images/one-to-one-img.png" />
+                </div>
+            </div>
+            <div class="row odd">
+                <div class="col-sm-12 col-md-6" data-aos="fade-right">
+                    <img src="./assets/images/audio-video-calling-img.png" />
+                </div>
+                <div class="col-sm-12 col-md-6" data-aos="fade-left">
+                    <h3>Audio/ Video Calling</h3>
+                    <p>Send and receive messages individually or connect with your people in group chats.</p>
+                </div>
+            </div>
+            <div class="row even">
+                <div class="col-sm-12 col-md-6" data-aos="fade-right">
+                    <h3>Video Conferencing</h3>
+                    <p>Connect remotely in group video interactions, share your views to enhance collaboration and
+                        productivity.</p>
+                </div>
+                <div class="col-sm-12 col-md-6" data-aos="fade-left">
+                    <img src="./assets/images/video-conference-img.png" />
+                </div>
+            </div>
+            <div class="row odd">
+                <div class="col-sm-12 col-md-6" data-aos="fade-right">
+                    <img src="./assets/images/one-to-one-img.png" />
+                </div>
+                <div class="col-sm-12 col-md-6" data-aos="fade-left">
+                    <h3>File Sharing Control</h3>
+                    <p>Allow users to share (images, audio, video, and docs), and recipients users can view and/or
+                        download & share them based on access permissions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="use-it-now" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+        <div class="container">
+            <div class="col-sm-12 col-md-4" data-aos="fade-left">
+                <h3>Use It Now</h3>
+            </div>
+            <div class="col-sm-12 col-md-8 text-end" data-aos="fade-left">
+                <div>
+                    <a href="https://apps.apple.com/app/id1579008216" target="_blank" class="btn btn-border"><i
+                            class="fab fa-apple"></i> Download Now</a>
+                    <a href="https://play.google.com/store/apps/details?id=io.titaniumsecure" target="_black" class="btn btn-border"><i
+                            class="fab fa-android"></i> Download Now</a>
+                    <a [routerLink]="[ '/chat' ]" routerLinkActive="active" class="btn btn-border"><i
+                            class="fas fa-globe-americas"></i> Web App</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <app-contact-form></app-contact-form>
+
+    <app-footer></app-footer>
+</div>

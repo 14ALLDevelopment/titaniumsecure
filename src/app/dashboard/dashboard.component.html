@@ -1,0 +1,60 @@
+<div class="wrapper">
+  <!-- <div class="payment-header">
+      <div class="payment-logo">
+          <img src="./assets/images/logo.png" />
+          <h3>Subscription</h3>
+      </div>
+      <div class="user-block">
+          <div class="dropdown">
+              <button class="buser-icon dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                  <img src="./assets/images/user-icon-img.jpg" />
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <div class="user-name">
+                      <h3>{{user.first_name + ' ' + user.last_name}}</h3>
+                  </div>
+                  <ul>
+                      <li class="subscription-menu">
+                          <a [routerLink]="[ '/dashboard' ]" routerLinkActive="active"><em></em>Subscription</a>
+                      </li>
+                      <li class="account-setting-menu">
+                          <a><em></em>Account Settings</a>
+                      </li>
+                      <li class="logout-menu">
+                          <a (click)="logOut()"><em></em>Log Out</a>
+                      </li>
+                  </ul>
+              </div>
+              <span class="user-name-text">{{user.first_name + ' ' + user.last_name}} <i class="fas fa-chevron-down"></i></span>
+          </div>
+      </div>
+  </div> -->
+  <app-header [headerTitle]="'Subscription'"></app-header>
+
+  <div class="payment-history-page">
+      <div class="backlink pointer"><a (click)="backClicked()"><i class="fas fa-chevron-left"></i> Back</a></div>
+      <div class="payment-history box-shadow" *ngIf="apiCalled">
+          <div class="subscription-amount-block">
+              <div class="amount" *ngIf="!showNoData">
+                  <p>Purchased on {{subscriptionDetails?.subscription_start_date | date : 'longDate'}}</p>
+                  <span>$</span> <strong>{{subscriptionDetails?.amount ? (subscriptionDetails.amount/100)  : 6.99}}</strong><br />
+                  <span class="amount-label">Per Month</span>
+              </div>
+              <div class="amount" *ngIf="showNoData">
+                <p></p>
+                <span>$</span> <strong> Free Plan</strong><br />
+                <span class="amount-label"></span>
+              </div>
+          </div>
+          <div class="view-payment-history-text" *ngIf="!showNoData">
+              <p>Next Charge on {{subscriptionDetails?.response_data.result.subscription.next_payment_date | date : 'longDate'}}</p>
+              <p><a [routerLink]="[ '/subscription-history' ]" routerLinkActive="active">View Payment History</a></p>
+          </div>
+
+          <div class="view-payment-history-text" *ngIf="showNoData">
+            <p></p>
+            <p><a [routerLink]="[ '/subscription-history' ]" routerLinkActive="active">View Payment History</a></p>
+        </div>
+      </div>
+  </div>
+</div>
